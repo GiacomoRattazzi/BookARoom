@@ -1,3 +1,4 @@
+
 package bookaroom.v1.controllers;
 
 import bookaroom.v1.exceptions.AlreadyExistsException;
@@ -15,14 +16,14 @@ import bookaroom.v1.database.MockDatabase;
 //Everything from BookingCart: 
 public class UserController {
 
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private int password;
-    private int CCnumber;
-    private int CCcode;
-    private String CCexpirationdate;
+    private static String username = "";
+    private static String firstName = "";
+    private static String lastName = "";
+    private static String email = "";
+    private static String password = "";
+    //private int CCnumber;
+    //private int CCcode;
+    //private String CCexpirationdate;
     //TODO: set up booking class:
     //private booking booking;
 
@@ -79,9 +80,9 @@ public class UserController {
     }
     
     //BCDelete:
-    public static double getAmount() {
-        return amount;
-    }
+    //public static double getAmount() {
+    //    return amount;
+    //}
 
     public static String getEmail() {
         return email;
@@ -104,9 +105,9 @@ public class UserController {
     }
     
     //BCDelete: 
-    public static void setAmount(double amount) {
-        UserController.amount = amount;
-    }
+    //public static void setAmount(double amount) {
+    //    UserController.amount = amount;
+    //}
 
     public static void setEmail(String email) {
         UserController.email = email;
