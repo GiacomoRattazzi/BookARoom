@@ -19,7 +19,8 @@ public class Booking {
         this.rooms = new ArrayList<>();
         //BCDelete: this.balance = 0.0;
     }
-
+    
+    /*BCDELETE:
     public double emptyBooking() {
         rooms.clear();
         //BCDelete: double tmp = balance;
@@ -36,7 +37,7 @@ public class Booking {
         //BCdelete: balance += food.getPrice();
     }
 
-    public void removeFood(Room room) {
+    public void removeRoom(Room room) {
         rooms.remove(room);
         //BCDelete: balance -= food.getPrice();
     }

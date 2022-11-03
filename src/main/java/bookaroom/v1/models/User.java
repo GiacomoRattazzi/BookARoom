@@ -19,7 +19,7 @@ public class User {
     private int CCcode;
     private String CCexpirationdate;
     //TODO: set up booking class:
-    //private booking booking;
+    private Booking booking;
 
     public User(String username, String firstName, String lastName, String email, String password) {
         this.username = username;
@@ -30,12 +30,12 @@ public class User {
         this.CCnumber = 0;
         this.CCcode = 0;
         this.CCexpirationdate = "";
-        //this.booking = new booking();
+        this.booking = new Booking();
     }
 
-    //public booking getBooking() {
-        //return booking;
-    //}
+    public Booking getBooking() {
+        return booking;
+    }
 
     public String getUsername() {
         return username;

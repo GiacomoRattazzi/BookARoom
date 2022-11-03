@@ -10,6 +10,8 @@ import java.util.ArrayList;
  * @author Team BookARoom
  */
 public class MockDatabase {
+    
+    private static MockDatabase instance;
 
     private static ArrayList<User> users = new ArrayList<User>() {
         {
@@ -43,7 +45,12 @@ public class MockDatabase {
             }));
         }
     };
-
+    public static MockDatabase getInstance() {
+        if (instance == null) {
+            instance = new MockDatabase();
+        }
+        return instance;
+    }
     public static void addAUser(User user) {
         users.add(user);
     }
