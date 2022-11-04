@@ -3,6 +3,7 @@ package bookaroom.v1.controllers;
 
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
+import bookaroom.v1.exceptions.InvalidCreditCardException;
 import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
 //To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
@@ -41,17 +42,16 @@ public class UserController {
         LoginController.getUserLoggedIn().increaseBalance(amount);
     */
     
-    /*To add:
-    public static void completeShopping() {
+    //To add:
+    public static void completeBooking() {
         try {
-            LoginController.getUserLoggedIn().completeShopping();
-        /* Change to InvalidCreditCard:
-        } catch (InsufficientBalanceException ex) {
+            LoginController.getUserLoggedIn().completeBooking();
+        // Change to InvalidCreditCard:
+        } catch (InvalidCreditCardException ex) {
             System.out.println(ex.getMessage());
         }
     }
-        */
-
+    
     protected static User findByUsername(String username) throws DoesNotExistException {
         for (User user : MockDatabase.getUsers()) {
             if (user.getUsername().equals(username)) {
@@ -128,5 +128,7 @@ public class UserController {
     public static void setUsername(String username) {
         UserController.username = username;
     }
+
+    
 
 }

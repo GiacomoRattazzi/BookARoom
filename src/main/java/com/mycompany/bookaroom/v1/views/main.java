@@ -99,7 +99,8 @@ public class main {
                                 roomName = sc.nextLine();
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();
-                                break;
+                                System.out.println("You have book "+ roomName +".");
+                                break;  
                             case "q":
                                 break;
                             default:
@@ -117,7 +118,13 @@ public class main {
                     RoomController.removeRoomFromBooking();
                     break;
                 case "3":
+                    System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
+                    System.out.println("Room name:");
+                    roomName = sc.nextLine();
+                    UserController.completeBooking();
+                    RoomController.setRoomName(roomName);
+                    RoomController.removeRoomFromBooking();
                     //TODO: exception invalidcreditcard
                     break;
                 case "4":

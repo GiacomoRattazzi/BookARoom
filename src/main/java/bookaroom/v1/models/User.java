@@ -1,6 +1,7 @@
 package bookaroom.v1.models;
 
 //import ch.unil.doplab.grocerystorewebsite.v1.exceptions.InsufficientBalanceException;
+import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.util.Arrays;
 
 /**
@@ -111,9 +112,22 @@ public class User {
         return "Username: " + this.username
                 + "\nFirst name: " + this.firstName
                 + "\nLast name: " + this.lastName
-                + "\nEmail: " + this.email;
+                + "\nEmail: " + this.email
                 //+ "\nBalance: " + this.balance
-                //+ "\n" + this.shoppingCart.toString();
+                + "\n" + this.booking.toString();
     }
 
+    public void completeBooking()throws InvalidCreditCardException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+/*  
+    // TESTING (Daniel)
+    public void completeBooking()throws InvalidCreditCardException {
+    if (this.CCnumber >= .getBalance()) {
+            System.out.println("You payed for the Rooms=" + Arrays.toString(booking.getRooms().toArray()) + ".");
+            room -= booking.emptyBooking();
+        } else {
+            throw new InsufficientBalanceException("Credit Card is invalid.");
+        }
+*/    
 }

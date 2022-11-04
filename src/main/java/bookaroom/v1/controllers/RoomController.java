@@ -56,7 +56,7 @@ public class RoomController {
                 return r;
             }
         }
-        throw new DoesNotExistException("Food " + roomName + " does not exist.");
+        throw new DoesNotExistException("Room " + roomName + " does not exist.");
     }
 
     protected static Room findRoomByNameInBooking() throws DoesNotExistException {
