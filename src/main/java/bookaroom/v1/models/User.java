@@ -22,15 +22,15 @@ public class User {
     //TODO: set up booking class:
     private Booking booking;
 
-    public User(String username, String firstName, String lastName, String email, String password) {
+    public User(String username, String firstName, String lastName, String email, String password, String CCnumber, String CCcode, String CCexpirationdate) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password.hashCode();
-        this.CCnumber = 0;
-        this.CCcode = 0;
-        this.CCexpirationdate = "";
+        this.CCnumber = CCnumber.hashCode();
+        this.CCcode = CCcode.hashCode();
+        this.CCexpirationdate = CCexpirationdate;
         this.booking = new Booking();
     }
 
@@ -86,7 +86,7 @@ public class User {
         this.CCnumber = CCnumber;
     }
     
-    public void setCCCode(int CCcode) {
+    public void setCCcode(int CCcode) {
          this.CCcode = CCcode;
     }
     
@@ -113,7 +113,7 @@ public class User {
                 + "\nFirst name: " + this.firstName
                 + "\nLast name: " + this.lastName
                 + "\nEmail: " + this.email
-                //+ "\nBalance: " + this.balance
+                + "\nCredit Card information:\n   - number: " + this.CCnumber + "\n   - code: " + this.CCcode + "\n   - expiration date: " + this.CCexpirationdate
                 + "\n" + this.booking.toString();
     }
 

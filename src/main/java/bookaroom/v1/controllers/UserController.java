@@ -7,14 +7,17 @@ import bookaroom.v1.exceptions.InvalidCreditCardException;
 import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
 //To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+
+        
 /**
  * Software Architectures | DOPLab | UniL
  *
  * @author Team BookARoom
  */
 
-//Everything from BookingCart: 
 public class UserController {
 
     private static String username = "";
@@ -22,16 +25,16 @@ public class UserController {
     private static String lastName = "";
     private static String email = "";
     private static String password = "";
-    //private int CCnumber;
-    //private int CCcode;
-    //private String CCexpirationdate;
+    private static String CCnumber = "";
+    private static String CCcode = "";
+    private static String CCexpirationdate = "";
     //TODO: set up booking class:
     //private booking booking;
 
     public static void createAUser() {
         try {
             if (!emailExists() && !usernameExists()) {
-                MockDatabase.addAUser(new User(username, firstName, lastName, email, password));
+                MockDatabase.addAUser(new User(username, firstName, lastName, email, password, CCnumber, CCcode, CCexpirationdate));
             }
         } catch (AlreadyExistsException | DoesNotExistException ex) {
             System.out.println(ex.getMessage());
@@ -103,7 +106,19 @@ public class UserController {
     public static String getUsername() {
         return username;
     }
+        
+    public static String getPaymentNumber() {
+        return CCnumber;
+    }
     
+    public static String getCCCode() {
+        return CCcode;
+    }
+    
+    public static String getCCExpirationDate() {
+        return CCexpirationdate;
+    }
+
     //BCDelete: 
     //public static void setAmount(double amount) {
     //    UserController.amount = amount;
@@ -128,7 +143,22 @@ public class UserController {
     public static void setUsername(String username) {
         UserController.username = username;
     }
-
+    
+    public static void setPaymentNumber(String CCnumber) {
+        UserController.CCnumber = CCnumber;
+    }
+    
+    public static void setCCnumber(String CCnumber) {
+         UserController.CCnumber = CCnumber;
+    }
+    
+    public static void setCCcode(String CCcode) {
+         UserController.CCcode = CCcode;
+    }
+    
+    public static void setCCexpirationDate(String CCexpirationdate) {
+        UserController.CCexpirationdate = CCexpirationdate;
+    } 
     
 
 }

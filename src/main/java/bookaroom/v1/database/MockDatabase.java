@@ -15,10 +15,10 @@ public class MockDatabase {
 
     private static ArrayList<User> users = new ArrayList<User>() {
         {
-            add(new User("lisa", "lisa", "simpson", "lisa@simpson.com", "1234"));
-            add(new User("homer", "homer", "simpson", "homer@simpson.com", "1234"));
-            add(new User("marge", "marge", "simpson", "marge@simpson.com", "1234"));
-            add(new User("bart", "bart", "simpson", "bart@simpson.com", "1234"));
+            add(new User("lisa", "lisa", "simpson", "lisa@simpson.com", "1234","0000111122223333","123","10/24"));
+            add(new User("homer", "homer", "simpson", "homer@simpson.com", "1234","0000111122223333","123","10/24"));
+            add(new User("marge", "marge", "simpson", "marge@simpson.com", "1234","0000111122223333","123","10/24"));
+            add(new User("bart", "bart", "simpson", "bart@simpson.com", "1234","0000111122223333","123","10/24"));
         }
     };
     private static ArrayList<Room> rooms = new ArrayList<Room>() {

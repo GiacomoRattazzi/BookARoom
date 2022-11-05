@@ -9,6 +9,8 @@ import bookaroom.v1.controllers.UserController;
 import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
 import java.util.Scanner;
+
+
 /**
  *
  * @author giaco
@@ -22,7 +24,7 @@ public class main {
         homePage();
     }
         private static void homePage() {
-        String choice, username, password, firstName, lastName, email;
+        String choice, username, password, firstName, lastName, email, ccexpirationdate, cccode, ccnumber;
         do {
             System.out.println("Enter:"
                     + "\n[q] to quit the application"
@@ -54,11 +56,21 @@ public class main {
                     email = sc.nextLine();
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
+                    System.out.println("PAYMENT INFORMATION");
+                    System.out.println("Enter a credit card number (16-digit number):");
+                    ccnumber = sc.nextLine();
+                    System.out.println("Enter a verification code (3-digit number):");
+                    cccode = sc.nextLine();
+                    System.out.println("Enter an expiration date (month/year):");
+                    ccexpirationdate = sc.nextLine();
                     UserController.setUsername(username);
                     UserController.setFirstName(firstName);
                     UserController.setLastName(lastName);
                     UserController.setEmail(email);
                     UserController.setPassword(password);
+                    UserController.setCCnumber(ccnumber);
+                    UserController.setCCcode(cccode);
+                    UserController.setCCexpirationDate(ccexpirationdate);
                     UserController.createAUser();
                     break;
                 case "3":
