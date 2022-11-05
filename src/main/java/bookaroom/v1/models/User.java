@@ -1,6 +1,7 @@
 package bookaroom.v1.models;
 
 //import ch.unil.doplab.grocerystorewebsite.v1.exceptions.InsufficientBalanceException;
+import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.util.Arrays;
 
 /**
@@ -21,15 +22,15 @@ public class User {
     //TODO: set up booking class:
     private Booking booking;
 
-    public User(String username, String firstName, String lastName, String email, String password) {
+    public User(String username, String firstName, String lastName, String email, String password, String CCnumber, String CCcode, String CCexpirationdate) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password.hashCode();
-        this.CCnumber = 0;
-        this.CCcode = 0;
-        this.CCexpirationdate = "";
+        this.CCnumber = CCnumber.hashCode();
+        this.CCcode = CCcode.hashCode();
+        this.CCexpirationdate = CCexpirationdate;
         this.booking = new Booking();
     }
 
@@ -85,7 +86,7 @@ public class User {
         this.CCnumber = CCnumber;
     }
     
-    public void setCCCode(int CCcode) {
+    public void setCCcode(int CCcode) {
          this.CCcode = CCcode;
     }
     
@@ -111,9 +112,22 @@ public class User {
         return "Username: " + this.username
                 + "\nFirst name: " + this.firstName
                 + "\nLast name: " + this.lastName
-                + "\nEmail: " + this.email;
-                //+ "\nBalance: " + this.balance
-                //+ "\n" + this.shoppingCart.toString();
+                + "\nEmail: " + this.email
+                + "\nCredit Card information:\n   - number: " + this.CCnumber + "\n   - code: " + this.CCcode + "\n   - expiration date: " + this.CCexpirationdate
+                + "\n" + this.booking.toString();
     }
 
+    public void completeBooking()throws InvalidCreditCardException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+/*  
+    // TESTING (Daniel)
+    public void completeBooking()throws InvalidCreditCardException {
+    if (this.CCnumber >= .getBalance()) {
+            System.out.println("You payed for the Rooms=" + Arrays.toString(booking.getRooms().toArray()) + ".");
+            room -= booking.emptyBooking();
+        } else {
+            throw new InsufficientBalanceException("Credit Card is invalid.");
+        }
+*/    
 }
