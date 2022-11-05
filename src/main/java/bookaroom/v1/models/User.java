@@ -54,7 +54,7 @@ public class User {
         return email;
     }
     
-    public int getPaymentNumber() {
+    public int getCCnumber() {
         return CCnumber;
     }
     
@@ -82,7 +82,7 @@ public class User {
         this.email = email;
     }
 
-    public void setPaymentNumber(int CCnumber) {
+    public void setCCnumber(int CCnumber) {
         this.CCnumber = CCnumber;
     }
     
@@ -113,7 +113,7 @@ public class User {
                 + "\nFirst name: " + this.firstName
                 + "\nLast name: " + this.lastName
                 + "\nEmail: " + this.email
-                + "\nCredit Card information:\n   - number: " + this.CCnumber + "\n   - code: " + this.CCcode + "\n   - expiration date: " + this.CCexpirationdate
+                + "\nCredit Card information:\n   - number: ****************" + "\n   - code: ***" + "\n   - expiration date: " + this.CCexpirationdate
                 + "\n" + this.booking.toString();
     }
 

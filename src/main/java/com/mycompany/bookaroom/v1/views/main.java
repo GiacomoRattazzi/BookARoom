@@ -8,6 +8,9 @@ package com.mycompany.bookaroom.v1.views;
 import bookaroom.v1.controllers.UserController;
 import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
+import bookaroom.v1.exceptions.AlreadyExistsException;
+import bookaroom.v1.exceptions.DoesNotExistException;
+import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.util.Scanner;
 
 
@@ -25,6 +28,8 @@ public class main {
     }
         private static void homePage() {
         String choice, username, password, firstName, lastName, email, ccexpirationdate, cccode, ccnumber;
+        //String ver;
+        
         do {
             System.out.println("Enter:"
                     + "\n[q] to quit the application"
@@ -57,10 +62,44 @@ public class main {
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
                     System.out.println("PAYMENT INFORMATION");
-                    System.out.println("Enter a credit card number (16-digit number):");
-                    ccnumber = sc.nextLine();
-                    System.out.println("Enter a verification code (3-digit number):");
-                    cccode = sc.nextLine();
+                    //CCnumber:
+                    ccnumber = "";
+                    String code1 = "";
+                    boolean numCorrect = false;
+                    while(!numCorrect){
+                        try{
+                            System.out.println("Enter a credit card number (16-digit number):"); 
+                            code1 = sc.nextLine();
+                            if (code1.length()!=16) {
+                                System.out.println("The credit card number should a 16-digit number, yours is a "+code1.length()+"-digit number. Please enter it again");
+                                
+                            }
+                            else if (code1.length()==16)
+                                numCorrect =true;
+                                ccnumber = code1;
+                        }catch(Exception e){
+                         continue;
+                      }
+                    }
+                    //CCcode:
+                    cccode = "";
+                    String code2 = "";
+                    boolean codeCorrect = false;
+                    while(!codeCorrect){
+                        try{
+                            System.out.println("Enter a verification code (3-digit number):");
+                            code2 = sc.nextLine();
+                            if (code2.length()!=3) {
+                                System.out.println("The credit card number should a 3-digit number, yours is a "+code2.length()+"-digit number. Please enter it again");
+                                
+                            }
+                            else if (code2.length()==3)
+                                codeCorrect =true;
+                                cccode = code2;
+                        }catch(Exception e){
+                         continue;
+                      }
+                    }
                     System.out.println("Enter an expiration date (month/year):");
                     ccexpirationdate = sc.nextLine();
                     UserController.setUsername(username);

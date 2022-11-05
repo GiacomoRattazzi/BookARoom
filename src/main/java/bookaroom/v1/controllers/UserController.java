@@ -30,13 +30,13 @@ public class UserController {
     private static String CCexpirationdate = "";
     //TODO: set up booking class:
     //private booking booking;
-
+    
     public static void createAUser() {
         try {
             if (!emailExists() && !usernameExists()) {
                 MockDatabase.addAUser(new User(username, firstName, lastName, email, password, CCnumber, CCcode, CCexpirationdate));
             }
-        } catch (AlreadyExistsException | DoesNotExistException ex) {
+        } catch (AlreadyExistsException | DoesNotExistException ex ) {
             System.out.println(ex.getMessage());
         }
     }
@@ -68,6 +68,15 @@ public class UserController {
         for (User user : MockDatabase.getUsers()) {
             if (user.getEmail().equals(email)) {
                 throw new AlreadyExistsException("The email " + email + " already in use.");
+            }
+        }
+        return false;
+    }
+    
+    protected static boolean ccNumberCorrect() throws InvalidCreditCardException {
+        for (User user : MockDatabase.getUsers()) {
+            if (user.getCCnumber() !=16) {
+                throw new InvalidCreditCardException("this shit wrong");
             }
         }
         return false;
@@ -107,7 +116,7 @@ public class UserController {
         return username;
     }
         
-    public static String getPaymentNumber() {
+    public static String getCCnumber() {
         return CCnumber;
     }
     
@@ -142,10 +151,6 @@ public class UserController {
 
     public static void setUsername(String username) {
         UserController.username = username;
-    }
-    
-    public static void setPaymentNumber(String CCnumber) {
-        UserController.CCnumber = CCnumber;
     }
     
     public static void setCCnumber(String CCnumber) {
