@@ -15,34 +15,89 @@ public class MockDatabase {
 
     private static ArrayList<User> users = new ArrayList<User>() {
         {
-            add(new User("lisa", "lisa", "simpson", "lisa@simpson.com", "1234","0000111122223333","123","10/24"));
-            add(new User("homer", "homer", "simpson", "homer@simpson.com", "1234","0000111122223333","123","10/24"));
-            add(new User("marge", "marge", "simpson", "marge@simpson.com", "1234","0000111122223333","123","10/24"));
-            add(new User("bart", "bart", "simpson", "bart@simpson.com", "1234","0000111122223333","123","10/24"));
+            add(new User("jwang", "jingmin", "wang", "jingmin.wang@unil.ch", "1234"));
+            add(new User("gratt", "giacomo", "rattazzi", "giacomo.rattazzi@gmail.com", "1234"));
+            add(new User("danes", "daniel", "do vale anes", "daniel.dovaleanes@gmail.com", "1234"));
+            add(new User("afarh", "ahmed", "farhat", "ahmed.farhat@gmail.com", "1234"));
         }
     };
     private static ArrayList<Room> rooms = new ArrayList<Room>() {
         {
-            add(new Room("Room 1", 330, new ArrayList<String>() {
+            add(new Room("Room 1", 200, new ArrayList<String>() {
+                {
+                    add("One double bed");
+                    add("1"); 
+                    add("r001");
+                }
+            }));
+            add(new Room("Room 2", 250, new ArrayList<String>() {
+                {
+                    add("Two double beds");
+                    add("2");
+                    add("r002");
+                }
+            }));
+            add(new Room("Room 3", 280, "Two bunk beds", new ArrayList<String>() {
                 {
                     add("2 beds");
-                    add("test");
-                    add("test");
+                    add("4");
+                    add("r003");
                 }
             }));
-            add(new Room("Room 2", 200, new ArrayList<String>() {
+             add(new Room("Room 4", 200, "One double bed", new ArrayList<String>() {
                 {
                     add("1 bed");
-                    add("test");
+                    add("1");
+                    add("r004");
                 }
             }));
-            add(new Room("Room 3", 100, new ArrayList<String>() {
+            
+             add(new Room("Room 5", 250, "Two double beds", new ArrayList<String>() {
+                {
+                    add("2 beds");
+                    add("2");
+                    add("r005");
+                }
+            }));
+            
+             add(new Room("Room 6", 280, "Two bunk beds", new ArrayList<String>() {
+                {
+                    add("2 beds");
+                    add("4");
+                    add("r006");
+                }
+            }));
+             add(new Room("Room 7", 200, "One double bed",  new ArrayList<String>() {
+                {
+                    add("1 bed");
+                    add("1");
+                    add("r007");
+                }
+            }));
+              add(new Room("Room 8", 250, "Two double beds", new ArrayList<String>() {
+                {
+                    add("2 beds");
+                    add("2");
+                    add("r008");
+                }
+            }));
+              add(new Room("Room 9", 280, "Two bunk beds", new ArrayList<String>() {
                 {
                     add("no beds");
-                    add("test");
-                    add("mtest");
+                    add("4");
+                    add("r009");
                 }
             }));
+               add(new Room("Room 10", 200, "One double bed", new ArrayList<String>() {
+                {
+                    add("no beds");
+                    add("1");
+                    add("r010");
+                }
+            }));
+               
+             
+             
         }
     };
     public static MockDatabase getInstance() {
