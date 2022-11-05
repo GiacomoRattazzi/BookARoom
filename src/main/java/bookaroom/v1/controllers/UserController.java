@@ -7,8 +7,7 @@ import bookaroom.v1.exceptions.InvalidCreditCardException;
 import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
 //To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 
         
@@ -28,6 +27,8 @@ public class UserController {
     private static String CCnumber = "";
     private static String CCcode = "";
     private static String CCexpirationdate = "";
+    
+    
     //TODO: set up booking class:
     //private booking booking;
     

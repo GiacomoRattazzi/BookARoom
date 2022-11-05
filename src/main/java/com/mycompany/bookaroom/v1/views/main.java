@@ -11,6 +11,9 @@ import bookaroom.v1.controllers.RoomController;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -171,11 +174,28 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    System.out.println("Room name:");
-                    roomName = sc.nextLine();
-                    UserController.completeBooking();
-                    RoomController.setRoomName(roomName);
-                    RoomController.removeRoomFromBooking();
+                    System.out.println("Here is the total amount for all the room(s) that you have booked.");
+                    // TODO Total amount for the room(s) that the user has booked
+                    //System.out.println(LoginController.getUserLoggedIn().getTotalPrice().toString());
+                    YearMonth currTime = YearMonth.now();
+                    System.out.println("Current time :"+currTime);
+                    System.out.println("Credit Card expiration date:");
+                    String ccexpdateInput = sc.nextLine(); // the problem is that the card is valid until this month
+                    
+                    //String cc = UserController.getCCExpirationDate();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
+                    YearMonth ccexpdateInputFormat = YearMonth.parse(ccexpdateInput, formatter);
+                    var CCexpdate = ccexpdateInputFormat.plusMonths(1);
+
+                    boolean expired = currTime.isBefore(CCexpdate);
+                    if (expired==true) {
+                        System.out.println("Credit Card is still valid.");
+                    } else {
+                        System.out.println("Credit Card has expired.");
+                    } 
+                    //UserController.completeBooking();
+                    //RoomController.setRoomName(roomName);
+                    //RoomController.removeRoomFromBooking();
                     //TODO: exception invalidcreditcard
                     break;
                 case "4":
