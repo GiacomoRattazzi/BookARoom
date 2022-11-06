@@ -100,7 +100,7 @@ public class UserController {
     }
     
     protected static boolean ExpiredCC() throws InvalidCreditCardDateException {
-        for (User user : MockDatabase.getUsers()) {
+        for (User user : MockDatabase.getInstance().getUsers()) {
             YearMonth userexpdateFormat = YearMonth.parse(user.getCCExpirationDate(), formatter); 
             boolean expired = CurrentTime.isBefore(userexpdateFormat);
                     if (expired==true) {
