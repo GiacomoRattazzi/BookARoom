@@ -2,6 +2,8 @@ package bookaroom.v1.models;
 
 //import ch.unil.doplab.grocerystorewebsite.v1.exceptions.InsufficientBalanceException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
+import bookaroom.v1.exceptions.InvalidCreditCardDateException;
+import java.time.YearMonth;
 import java.util.Arrays;
 
 /**
@@ -117,8 +119,15 @@ public class User {
                 + "\n" + this.booking.toString();
     }
 
-    public void completeBooking()throws InvalidCreditCardException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void completeBooking()throws InvalidCreditCardDateException {
+        
+        /*boolean expired = currTime.isBefore(CCexpdate);
+                    if (expired==true) {
+                        System.out.println("Credit Card is still valid.");
+                    } else {
+                        System.out.println("Credit Card has expired.");
+                    } */
+        throw new InvalidCreditCardDateException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 /*  
     // TESTING (Daniel)

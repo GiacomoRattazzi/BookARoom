@@ -10,10 +10,9 @@ import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
+import bookaroom.v1.exceptions.InvalidCreditCardDateException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
-import java.time.LocalDate;
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -98,8 +97,22 @@ public class main {
                             cccode = code2;
                       }
                     
-                    System.out.println("Enter an expiration date (month/year):");
-                    ccexpirationdate = sc.nextLine();
+                    // Maybe if it fails here the user needs to put a new credit card so restart from ccnumber
+                    ccexpirationdate = "";
+                    boolean CCDateValid = false;
+                    while(!CCDateValid){
+                        System.out.println("Enter an expiration date (month/year => MM/yy):");
+                        ccexpirationdate = sc.nextLine();
+                        YearMonth ccexpdateFormat = YearMonth.parse(ccexpirationdate, UserController.getFormatter()); 
+                    
+                        boolean valid = UserController.getCurrentTime().isBefore(ccexpdateFormat);
+                        if (valid==true) {
+                            System.out.println("Credit Card is still valid.");
+                            CCDateValid = true;
+                        } else {
+                            System.out.println("Credit Card has expired.");
+                        } 
+                    }
                     UserController.setUsername(username);
                     UserController.setFirstName(firstName);
                     UserController.setLastName(lastName);
@@ -172,17 +185,13 @@ public class main {
                     System.out.println("Here is the total amount for all the room(s) that you have booked.");
                     // TODO Total amount for the room(s) that the user has booked
                     //System.out.println(LoginController.getUserLoggedIn().getTotalPrice().toString());
-                    YearMonth currTime = YearMonth.now();
-                    System.out.println("Current time :"+currTime);
-                    System.out.println("Credit Card expiration date:");
-                    String ccexpdateInput = sc.nextLine(); // the problem is that the card is valid until this month
-                    
-                    //String cc = UserController.getCCExpirationDate();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
-                    YearMonth ccexpdateInputFormat = YearMonth.parse(ccexpdateInput, formatter);
+                    //YearMonth currTime = YearMonth.now();
+                    System.out.println("Current time :"+UserController.getCurrentTime());
+                    System.out.println("Credit Card expiration date:"+LoginController.getUserLoggedIn().getCCExpirationDate());
+                    YearMonth ccexpdateInputFormat = YearMonth.parse(LoginController.getUserLoggedIn().getCCExpirationDate(), UserController.getFormatter());
                     var CCexpdate = ccexpdateInputFormat.plusMonths(1);
-
-                    boolean expired = currTime.isBefore(CCexpdate);
+                    // TODO: put this in exception invalidcreditcard and if the credit Card has expired, ask to update with a new credit card 
+                    boolean expired = UserController.getCurrentTime().isBefore(CCexpdate);
                     if (expired==true) {
                         System.out.println("Credit Card is still valid.");
                     } else {
@@ -191,7 +200,6 @@ public class main {
                     //UserController.completeBooking();
                     //RoomController.setRoomName(roomName);
                     //RoomController.removeRoomFromBooking();
-                    //TODO: exception invalidcreditcard
                     break;
                 case "4":
                     System.out.println(LoginController.getUserLoggedIn().toString());
