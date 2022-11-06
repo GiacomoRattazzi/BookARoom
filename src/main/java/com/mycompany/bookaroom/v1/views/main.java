@@ -151,7 +151,7 @@ public class main {
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
-                    + "\n[1] to see rooms in the Hotel and adding one to Booking"
+                    + "\n[1] to see rooms in the Hotel and add one to Booking"
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to show user information");
@@ -171,7 +171,7 @@ public class main {
                                 roomName = sc.nextLine();
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();
-                                System.out.println("You have book "+ roomName +".");
+                                System.out.println("You have booked "+ roomName +".");
                                 break;  
                             case "q":
                                 break;
