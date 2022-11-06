@@ -13,6 +13,7 @@ import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardDateException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.time.YearMonth;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 
@@ -103,15 +104,24 @@ public class main {
                     while(!CCDateValid){
                         System.out.println("Enter an expiration date (month/year => MM/yy):");
                         ccexpirationdate = sc.nextLine();
-                        YearMonth ccexpdateFormat = YearMonth.parse(ccexpirationdate, UserController.getFormatter()); 
-                    
-                        boolean valid = UserController.getCurrentTime().isBefore(ccexpdateFormat);
-                        if (valid==true) {
-                            System.out.println("Credit Card is still valid.");
-                            CCDateValid = true;
+                        
+                        try
+                        {
+                            YearMonth ccexpdateFormat = YearMonth.parse(ccexpirationdate, UserController.getFormatter()); 
+                            System.out.println(ccexpirationdate+" is valid date format");
+                            boolean valid = UserController.getCurrentTime().isBefore(ccexpdateFormat);
+                            
+                            if (valid==true) {
+                                System.out.println("Credit Card is still valid.");
+                                CCDateValid = true;
                         } else {
                             System.out.println("Credit Card has expired.");
-                        } 
+                        }
+                        }
+                        catch (DateTimeParseException e)
+                        {
+                            System.out.println(ccexpirationdate+" is Invalid Date format");
+                        }
                     }
                     UserController.setUsername(username);
                     UserController.setFirstName(firstName);
