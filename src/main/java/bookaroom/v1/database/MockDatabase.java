@@ -28,28 +28,28 @@ public class MockDatabase {
         rooms.add(new Room("Room 1", 200, new ArrayList<String>() {
             {
                 add("One double bed");
-                add("1"); 
+                add("Maximum capacity: 1"); 
                 add("r001");
             }
         }));
         rooms.add(new Room("Room 2", 250, new ArrayList<String>() {
             {
                 add("Two double beds");
-                add("2");
+                add("Maximum capacity: 2");
                 add("r002");
             }
         }));
         rooms.add(new Room("Room 3", 280, new ArrayList<String>() {
             {
                 add("2 beds");
-                add("4");
+                add("Maximum capacity: 4");
                 add("r003");
             }
         }));
         rooms.add(new Room("Room 4", 200, new ArrayList<String>() {
             {
                 add("1 bed");
-                add("1");
+                add("Maximum capacity: 1");
                 add("r004");
             }
         }));
@@ -57,7 +57,7 @@ public class MockDatabase {
         rooms.add(new Room("Room 5", 250, new ArrayList<String>() {
             {
                 add("2 beds");
-                add("2");
+                add("Maximum capacity: 2");
                 add("r005");
             }
         }));
@@ -65,35 +65,35 @@ public class MockDatabase {
         rooms.add(new Room("Room 6", 280, new ArrayList<String>() {
             {
                 add("2 beds");
-                add("4");
+                add("Maximum capacity: 4");
                 add("r006");
             }
         }));
         rooms.add(new Room("Room 7", 200,  new ArrayList<String>() {
             {
                 add("1 bed");
-                add("1");
+                add("Maximum capacity: 1");
                 add("r007");
             }
         }));
         rooms.add(new Room("Room 8", 250, new ArrayList<String>() {
             {
                 add("2 beds");
-                add("2");
+                add("Maximum capacity: 2");
                 add("r008");
             }
         }));
         rooms.add(new Room("Room 9", 280, new ArrayList<String>() {
             {
                 add("no beds");
-                add("4");
+                add("Maximum capacity: 4");
                 add("r009");
             }
         }));
         rooms.add(new Room("Room 10", 200, new ArrayList<String>() {
             {
                 add("no beds");
-                add("1");
+                add("Maximum capacity: 1");
                 add("r010");
             }
         }));
