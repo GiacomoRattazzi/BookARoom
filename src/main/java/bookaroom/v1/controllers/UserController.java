@@ -4,8 +4,11 @@ package bookaroom.v1.controllers;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
+import bookaroom.v1.exceptions.InvalidCreditCardDateException;
 import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 //To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
 
 
@@ -27,10 +30,15 @@ public class UserController {
     private static String CCnumber = "";
     private static String CCcode = "";
     private static String CCexpirationdate = "";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+  //private static YearMonth ccexpirationdateFormat = YearMonth.parse(CCexpirationdate, formatter); // don't put final
+    private static final YearMonth CurrentTime = YearMonth.now();
     
     
     //TODO: set up booking class:
     //private booking booking;
+    
+    // all of this doesn't work (emailExists, ccNumberCorrect, usernameExists, ExpiredCC)
     
     public static void createAUser() {
         try {
@@ -50,8 +58,7 @@ public class UserController {
     public static void completeBooking() {
         try {
             LoginController.getUserLoggedIn().completeBooking();
-        // Change to InvalidCreditCard:
-        } catch (InvalidCreditCardException ex) {
+        } catch (InvalidCreditCardDateException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -92,6 +99,18 @@ public class UserController {
         return false;
     }
     
+    protected static boolean ExpiredCC() throws InvalidCreditCardDateException {
+        for (User user : MockDatabase.getUsers()) {
+            YearMonth userexpdateFormat = YearMonth.parse(user.getCCExpirationDate(), formatter); 
+            boolean expired = CurrentTime.isBefore(userexpdateFormat);
+                    if (expired==true) {
+                        System.out.println("Credit Card is still valid.");
+                    } else {
+                        throw new InvalidCreditCardDateException("Credit Card has expired.");
+                    } 
+        }
+        return false;
+    }
     //BCDelete:
     //public static double getAmount() {
     //    return amount;
@@ -128,7 +147,15 @@ public class UserController {
     public static String getCCExpirationDate() {
         return CCexpirationdate;
     }
-
+    
+    public static YearMonth getCurrentTime() {
+        return CurrentTime;
+    }
+    
+    public static DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+    
     //BCDelete: 
     //public static void setAmount(double amount) {
     //    UserController.amount = amount;
