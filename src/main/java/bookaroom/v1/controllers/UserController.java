@@ -43,7 +43,7 @@ public class UserController {
     public static void createAUser() {
         try {
             if (!emailExists() && !usernameExists()) {
-                MockDatabase.addAUser(new User(username, firstName, lastName, email, password, CCnumber, CCcode, CCexpirationdate));
+                MockDatabase.getInstance().addAUser(new User(username, firstName, lastName, email, password, CCnumber, CCcode, CCexpirationdate));
             }
         } catch (AlreadyExistsException | DoesNotExistException ex ) {
             System.out.println(ex.getMessage());
@@ -64,7 +64,7 @@ public class UserController {
     }
     
     protected static User findByUsername(String username) throws DoesNotExistException {
-        for (User user : MockDatabase.getUsers()) {
+        for (User user : MockDatabase.getInstance().getUsers()) {
             if (user.getUsername().equals(username)) {
                 return user;
             }
@@ -73,7 +73,7 @@ public class UserController {
     }
 
     protected static boolean emailExists() throws AlreadyExistsException {
-        for (User user : MockDatabase.getUsers()) {
+        for (User user : MockDatabase.getInstance().getUsers()) {
             if (user.getEmail().equals(email)) {
                 throw new AlreadyExistsException("The email " + email + " already in use.");
             }
@@ -82,7 +82,7 @@ public class UserController {
     }
     
     protected static boolean ccNumberCorrect() throws InvalidCreditCardException {
-        for (User user : MockDatabase.getUsers()) {
+        for (User user : MockDatabase.getInstance().getUsers()) {
             if (user.getCCnumber() !=16) {
                 throw new InvalidCreditCardException("this shit wrong");
             }
@@ -91,7 +91,7 @@ public class UserController {
     }
 
     protected static boolean usernameExists() throws DoesNotExistException {
-        for (User user : MockDatabase.getUsers()) {
+        for (User user : MockDatabase.getInstance().getUsers()) {
             if (user.getUsername().equals(username)) {
                 return true;
             }
