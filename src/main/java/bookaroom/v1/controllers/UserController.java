@@ -93,7 +93,7 @@ public class UserController {
     protected static boolean usernameExists() throws DoesNotExistException {
         for (User user : MockDatabase.getInstance().getUsers()) {
             if (user.getUsername().equals(username)) {
-                throw new AlreadyExistsException("The username " + username + " already in use.");
+                throw new DoesNotExistException("The username " + username + " already in use.");
             }
         }
         return false;
