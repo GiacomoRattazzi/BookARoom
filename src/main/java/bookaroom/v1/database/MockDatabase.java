@@ -41,14 +41,14 @@ public class MockDatabase {
         }));
         rooms.add(new Room("Room 3", 280, new ArrayList<String>() {
             {
-                add("Two bunk beds");
+                add("2 beds");
                 add("Maximum capacity: 4");
                 add("r003");
             }
         }));
         rooms.add(new Room("Room 4", 200, new ArrayList<String>() {
             {
-                add("One double bed");
+                add("1 bed");
                 add("Maximum capacity: 1");
                 add("r004");
             }
@@ -56,7 +56,7 @@ public class MockDatabase {
 
         rooms.add(new Room("Room 5", 250, new ArrayList<String>() {
             {
-                add("Two double beds");
+                add("2 beds");
                 add("Maximum capacity: 2");
                 add("r005");
             }
@@ -64,35 +64,35 @@ public class MockDatabase {
 
         rooms.add(new Room("Room 6", 280, new ArrayList<String>() {
             {
-                add("Two bunk beds");
+                add("2 beds");
                 add("Maximum capacity: 4");
                 add("r006");
             }
         }));
         rooms.add(new Room("Room 7", 200,  new ArrayList<String>() {
             {
-                add("One double bed");
+                add("1 bed");
                 add("Maximum capacity: 1");
                 add("r007");
             }
         }));
         rooms.add(new Room("Room 8", 250, new ArrayList<String>() {
             {
-                add("Two double beds");
+                add("2 beds");
                 add("Maximum capacity: 2");
                 add("r008");
             }
         }));
         rooms.add(new Room("Room 9", 280, new ArrayList<String>() {
             {
-                add("Two bunk beds");
+                add("no beds");
                 add("Maximum capacity: 4");
                 add("r009");
             }
         }));
         rooms.add(new Room("Room 10", 200, new ArrayList<String>() {
             {
-                add("One double bed");
+                add("no beds");
                 add("Maximum capacity: 1");
                 add("r010");
             }
