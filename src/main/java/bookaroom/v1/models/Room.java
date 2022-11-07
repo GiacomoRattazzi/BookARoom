@@ -13,12 +13,15 @@ public class Room {
     private String name;
     private double price;
     private ArrayList<String> description;
+    private ArrayList<String> datesbooked;
 
-    public Room(String name, double price, ArrayList<String> descriptionAll) {
+    public Room(String name, double price, ArrayList<String> descriptionAll, ArrayList<String> datesbookedList) {
         this.name = name;
         this.price = price;
         description = new ArrayList<>();
         description.addAll(descriptionAll);
+        this.datesbooked = new ArrayList<>();
+        this.datesbooked.addAll(datesbookedList);
     }
 
     public ArrayList<String> getDescription() {
@@ -44,8 +47,8 @@ public class Room {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Room) {
-            Room f = (Room) obj;
-            return f.toString().equals(this.toString());
+            Room r = (Room) obj;
+            return r.toString().equals(this.toString());
         }
         return false;
     }
@@ -55,6 +58,7 @@ public class Room {
         return "Room{"
                 + "\nName=" + name
                 + "\nPrice=" + price
-                + "\nDescription=" + Arrays.toString(description.toArray()) + '}';
-    }
+                + "\nDescription=" + Arrays.toString(description.toArray()) + '}'
+                + "\nDatesBooked=" + Arrays.toString(datesbooked.toArray()) + '}';
+    }   
 }

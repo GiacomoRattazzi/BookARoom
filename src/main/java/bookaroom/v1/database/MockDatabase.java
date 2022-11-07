@@ -3,9 +3,8 @@ package bookaroom.v1.database;
 import bookaroom.v1.models.Room;
 import bookaroom.v1.models.User;
 import bookaroom.v1.models.Comment;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.time.*;
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -140,10 +139,13 @@ public class MockDatabase {
                 add(LocalDate.of(2012,12,11).toString());
             }
         }));
+               
         comments = new ArrayList<Comment>();
         comments.add(new Comment("this is great"));
         comments.add(new Comment("this is terrible"));
-    }
+        
+             
+        }
     
         
     public static MockDatabase getInstance() {
@@ -156,20 +158,21 @@ public class MockDatabase {
         users.add(user);
     }
 
-    public void addAComment(Comment comment) {
-        comments.add(comment);
-    }
-    
     public void addRoom(Room room) {
         rooms.add(room);
     }
+    
+    public void addAComment(Comment comment) {
+        comments.add(comment);
+    }
+
 
     public void removeAUser(User user) {
         users.remove(user);
     }
 
-    public static void removeRoom(Room room) {
-
+    public void removeRoom(Room room) {
+        rooms.remove(room);
     }
 
     public ArrayList<Room> getRooms() {
@@ -183,5 +186,6 @@ public class MockDatabase {
     public ArrayList<Comment> getComments() {
         return comments;
     }
+
 
 }
