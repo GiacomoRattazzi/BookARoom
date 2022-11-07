@@ -36,7 +36,6 @@ public class UserController {
     private static final YearMonth CurrentTime = YearMonth.now();
     private static final DateTimeFormatter Dateformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final LocalDate CurrentTimeLong = LocalDate.now();
-    private static LocalDate CurrentTimeLongFormat = CurrentTimeLong.format(Dateformatter); 
    
 
     
