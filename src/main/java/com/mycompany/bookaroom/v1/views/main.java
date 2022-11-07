@@ -13,6 +13,7 @@ import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardDateException;
 import bookaroom.v1.exceptions.InvalidCreditCardException;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -181,8 +182,8 @@ public class main {
 
                                     try
                                     {
-                                        YearMonth dadateFormat = YearMonth.parse(dayArrival, UserController.getDateFormatter()); 
-                                        boolean valid = UserController.getCurrentTime().isBefore(dadateFormat);
+                                        LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter()); 
+                                        boolean valid = UserController.getCurrentTimeLong().isBefore(dadateFormat);
 
                                         if (valid==true) {
                                             System.out.println("The arrival day will be "+dayArrival+".");
@@ -199,20 +200,20 @@ public class main {
                                 dayDeparture = "";
                                 boolean DDDateValid = false;
                                 while(!DDDateValid){
-                                    System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
+                                    System.out.println("Enter the name date of departure: (day,month,year = dd/mm/yyyy)");
                                     dayDeparture = sc.nextLine();
 
                                     try
                                     {
-                                        YearMonth dadateFormat = YearMonth.parse(dayArrival, UserController.getDateFormatter());
-                                        YearMonth dddateFormat = YearMonth.parse(dayDeparture, UserController.getDateFormatter()); 
+                                        LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
+                                        LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
                                         boolean valid = dadateFormat.isBefore(dddateFormat);
 
                                         if (valid==true) {
-                                            System.out.println("The arrival day will be "+dayDeparture+".");
+                                            System.out.println("The departure day will be "+dayDeparture+".");
                                             DDDateValid = true;
                                     } else {
-                                        System.out.println("The departure date " +dayDeparture+ "should later then the arrival day which is "+dayArrival+ ".");
+                                        System.out.println("The departure date " +dayDeparture+ " should later then the arrival day which is "+dayArrival+ ".");
                                     }
                                     }
                                     catch (DateTimeParseException e)
@@ -220,7 +221,6 @@ public class main {
                                         System.out.println(dayDeparture+" is not a valid Date format.");
                                     }
                                 }
-                                System.out.println("Enter the name date of arrival: (Year,month,day)");
                                 
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();
