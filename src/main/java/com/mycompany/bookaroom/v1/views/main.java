@@ -8,6 +8,7 @@ package com.mycompany.bookaroom.v1.views;
 import bookaroom.v1.controllers.UserController;
 import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
+import bookaroom.v1.controllers.CommentController;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardDateException;
@@ -146,14 +147,14 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName;
+        String choice, subChoice, roomName, comment;
 
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
                     + "\n[1] to Room list"
                     + "\n[2] to cancel a reservation"
-                    + "\n[3] to comfirm a reservation and check out"
+                    + "\n[3] to confirm a reservation and check out"
                     + "\n[4] to show user information"
                     + "\n[5] to change payment information");
                     //TODO if we finished the rest, do restaurants preferences
@@ -212,11 +213,34 @@ public class main {
                     //RoomController.setRoomName(roomName);
                     //RoomController.removeRoomFromBooking();
                     break;
+                    		
                 case "4":
-                    System.out.println(LoginController.getUserLoggedIn().toString());
+                    System.out.println(CommentController.getComments());
+                    do {
+                        System.out.println("Enter: "
+                                + "\n[q] to go back"
+                                + "\n[1] to add a comment");
+                        subChoice = sc.nextLine();
+                        switch (subChoice) {
+                            case "1":
+                                System.out.println("Enter your comment:");
+                                comment = sc.nextLine();
+                                CommentController.setComment(comment);
+                                CommentController.addCommentFromUser();
+                                System.out.println("Comment added!");
+                                System.out.println(CommentController.getComments());
+                                break;
+                            case "q":
+                                break;
+                            default:
+                                System.out.println("Choice = " + subChoice + " does not exist.");
+                                break;
+                        }
+                    } while (!subChoice.equals("q"));
                     break;
                 case "5":
-                    System.out.println("Please enter your new Credit Card number:");
+                    System.out.println(LoginController.getUserLoggedIn().toString());
+                    break;
                 case "q":
                     System.out.println("Logging out...");
                     break;
