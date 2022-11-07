@@ -9,7 +9,10 @@ import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.models.Room;
 import bookaroom.v1.database.MockDatabase;
 import bookaroom.v1.models.User;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -80,6 +83,13 @@ public class RoomController {
 
     public static void setRoomName(String roomName) {
         RoomController.roomName = roomName;
+    }
+    
+    //New date
+    public static List<LocalDate> getDatesBetween(
+        LocalDate startDate, LocalDate endDate) {
+        return startDate.datesUntil(endDate).collect(Collectors.toList());
+        
     }
 
 }
