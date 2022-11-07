@@ -119,7 +119,7 @@ public class MockDatabase {
         }));
         rooms.add(new Room("Room 9", 280, new ArrayList<String>() {
             {
-                add("no beds");
+                add("2 bunk beds");
                 add("Maximum capacity: 4");
                 add("r009");
             }
@@ -130,7 +130,7 @@ public class MockDatabase {
         }));
         rooms.add(new Room("Room 10", 200, new ArrayList<String>() {
             {
-                add("no beds");
+                add("1 bed");
                 add("Maximum capacity: 1");
                 add("r010");
             }
