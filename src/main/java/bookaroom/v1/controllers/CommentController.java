@@ -46,7 +46,7 @@ public class CommentController {
 
     public static void addCommentFromUser() {
         User user = LoginController.getUserLoggedIn();
-        MockDatabase.getInstance().addAComment(new Comment(user.getUsername()+": "+comment+" ("+UserController.getCurrentTimeComment().format(formatterComment)+")"));
+        MockDatabase.getInstance().addAComment(new Comment(user.getUsername()+": "+comment+" ("+UserController.getCurrentTimeLong().format(formatterComment)+")"));
         
 
     }

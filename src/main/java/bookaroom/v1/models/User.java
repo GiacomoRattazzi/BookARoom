@@ -35,6 +35,10 @@ public class User {
         this.CCexpirationdate = CCexpirationdate;
         this.booking = new Booking();
     }
+    
+    public void resetFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
     public Booking getBooking() {
         return booking;
@@ -120,23 +124,6 @@ public class User {
     }
 
     public void completeBooking()throws InvalidCreditCardDateException {
-        
-        /*boolean expired = currTime.isBefore(CCexpdate);
-                    if (expired==true) {
-                        System.out.println("Credit Card is still valid.");
-                    } else {
-                        System.out.println("Credit Card has expired.");
-                    } */
         throw new InvalidCreditCardDateException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-/*  
-    // TESTING (Daniel)
-    public void completeBooking()throws InvalidCreditCardException {
-    if (this.CCnumber >= .getBalance()) {
-            System.out.println("You payed for the Rooms=" + Arrays.toString(booking.getRooms().toArray()) + ".");
-            room -= booking.emptyBooking();
-        } else {
-            throw new InsufficientBalanceException("Credit Card is invalid.");
-        }
-*/    
 }

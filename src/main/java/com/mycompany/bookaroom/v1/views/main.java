@@ -109,7 +109,7 @@ public class main {
                         try
                         {
                             YearMonth ccexpdateFormat = YearMonth.parse(ccexpirationdate, UserController.getFormatter()); 
-                            System.out.println(ccexpirationdate+" is valid date format");
+                            System.out.println(ccexpirationdate+" is valid date format.");
                             boolean valid = UserController.getCurrentTime().isBefore(ccexpdateFormat);
                             
                             if (valid==true) {
@@ -121,7 +121,7 @@ public class main {
                         }
                         catch (DateTimeParseException e)
                         {
-                            System.out.println(ccexpirationdate+" is Invalid Date format");
+                            System.out.println(ccexpirationdate+" is not a valid Date format.");
                         }
                     }
                     UserController.setUsername(username);
@@ -171,10 +171,58 @@ public class main {
                             case "1":
                                 System.out.println("Enter the name of the room:");
                                 roomName = sc.nextLine();
+                                
+                                
+                                dayArrival = "";
+                                boolean DADateValid = false;
+                                while(!DADateValid){
+                                    System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                    dayArrival = sc.nextLine();
+
+                                    try
+                                    {
+                                        YearMonth dadateFormat = YearMonth.parse(dayArrival, UserController.getDateFormatter()); 
+                                        boolean valid = UserController.getCurrentTime().isBefore(dadateFormat);
+
+                                        if (valid==true) {
+                                            System.out.println("The arrival day will be "+dayArrival+".");
+                                            DADateValid = true;
+                                    } else {
+                                        System.out.println(dayArrival+" has already passed. Today's date is " +UserController.getCurrentTimeLong());
+                                    }
+                                    }
+                                    catch (DateTimeParseException e)
+                                    {
+                                        System.out.println(dayArrival+" is not a valid Date format.");
+                                    }
+                                }
                                 System.out.println("Enter the name date of arrival: (Year,month,day)");
-                                dayArrival = sc.nextLine();
+                                
+                                dayDeparture = "";
+                                boolean DDDateValid = false;
+                                while(!DDDateValid){
+                                    System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                    dayDeparture = sc.nextLine();
+
+                                    try
+                                    {
+                                        YearMonth dadateFormat = YearMonth.parse(dayArrival, UserController.getDateFormatter());
+                                        YearMonth dddateFormat = YearMonth.parse(dayDeparture, UserController.getDateFormatter()); 
+                                        boolean valid = dadateFormat.isBefore(dddateFormat);
+
+                                        if (valid==true) {
+                                            System.out.println("The arrival day will be "+dayDeparture+".");
+                                            DDDateValid = true;
+                                    } else {
+                                        System.out.println("The departure date " +dayDeparture+ "should later then the arrival day which is "+dayArrival+ ".");
+                                    }
+                                    }
+                                    catch (DateTimeParseException e)
+                                    {
+                                        System.out.println(dayDeparture+" is not a valid Date format.");
+                                    }
+                                }
                                 System.out.println("Enter the name date of arrival: (Year,month,day)");
-                                dayDeparture = sc.nextLine();
                                 
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();

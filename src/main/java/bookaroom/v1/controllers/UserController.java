@@ -34,8 +34,10 @@ public class UserController {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
   //private static YearMonth ccexpirationdateFormat = YearMonth.parse(CCexpirationdate, formatter); // don't put final
     private static final YearMonth CurrentTime = YearMonth.now();
-
-    private static final LocalDate CurrentTimeComment = LocalDate.now();
+    private static final DateTimeFormatter Dateformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final LocalDate CurrentTimeLong = LocalDate.now();
+    private static LocalDate CurrentTimeLongFormat = CurrentTimeLong.format(Dateformatter); 
+   
 
     
     //TODO: set up booking class:
@@ -155,8 +157,8 @@ public class UserController {
         return CurrentTime;
     }
     
-    public static LocalDate getCurrentTimeComment() {
-        return CurrentTimeComment;
+    public static LocalDate getCurrentTimeLong() {
+        return CurrentTimeLong;
     }
     
     
@@ -164,7 +166,9 @@ public class UserController {
         return formatter;
     }
     
-
+    public static DateTimeFormatter getDateFormatter() {
+        return Dateformatter;
+    }
     
     //BCDelete: 
     //public static void setAmount(double amount) {
