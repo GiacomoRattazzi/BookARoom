@@ -189,7 +189,7 @@ public class main {
                                             System.out.println("The arrival day will be "+dayArrival+".");
                                             DADateValid = true;
                                     } else {
-                                        System.out.println(dayArrival+" has already passed. Today's date is " +UserController.getCurrentTimeLong());
+                                        System.out.println(dayArrival+" has already passed. Today's date is " +UserController.getCurrentTimeLong()+".");
                                     }
                                     }
                                     catch (DateTimeParseException e)
@@ -213,7 +213,8 @@ public class main {
                                             System.out.println("The departure day will be "+dayDeparture+".");
                                             DDDateValid = true;
                                     } else {
-                                        System.out.println("The departure date " +dayDeparture+ " should later then the arrival day which is "+dayArrival+ ".");
+                                        System.out.println("The departure day " +dayDeparture+ 
+                                                " should later then the arrival day which is "+dayArrival+ ".");
                                     }
                                     }
                                     catch (DateTimeParseException e)
@@ -224,7 +225,9 @@ public class main {
                                 
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();
-                                System.out.println("You have booked "+ roomName +".");
+                                System.out.println(" You have booked "+ roomName +"."
+                                        +"\n The arrival day is "+ dayArrival +"."
+                                        +"\n The departure is " + dayDeparture +".");
                                 break;  
                             case "q":
                                 break;
