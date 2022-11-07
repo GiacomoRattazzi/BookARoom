@@ -13,6 +13,8 @@ import bookaroom.v1.models.Room;
 import bookaroom.v1.models.User;
 import java.time.LocalDateTime;  
 import java.time.YearMonth;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -22,6 +24,7 @@ public class CommentController {
  
     private static String comment = "";
     private static final LocalDateTime now = LocalDateTime.now();
+    private static final DateTimeFormatter formatterComment = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             
 
     public static ArrayList<Comment> getComments() {
@@ -43,7 +46,7 @@ public class CommentController {
 
     public static void addCommentFromUser() {
         User user = LoginController.getUserLoggedIn();
-        MockDatabase.getInstance().addAComment(new Comment(user.getUsername()+": "+comment+" ("+UserController.getCurrentTime()+")"));
+        MockDatabase.getInstance().addAComment(new Comment(user.getUsername()+": "+comment+" ("+UserController.getCurrentTimeComment().format(formatterComment)+")"));
         
 
     }

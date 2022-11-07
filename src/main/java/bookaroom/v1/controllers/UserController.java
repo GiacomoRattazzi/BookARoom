@@ -9,6 +9,7 @@ import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 //To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
 
 
@@ -33,7 +34,9 @@ public class UserController {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
   //private static YearMonth ccexpirationdateFormat = YearMonth.parse(CCexpirationdate, formatter); // don't put final
     private static final YearMonth CurrentTime = YearMonth.now();
-    
+
+    private static final LocalDate CurrentTimeComment = LocalDate.now();
+
     
     //TODO: set up booking class:
     //private booking booking;
@@ -152,9 +155,16 @@ public class UserController {
         return CurrentTime;
     }
     
+    public static LocalDate getCurrentTimeComment() {
+        return CurrentTimeComment;
+    }
+    
+    
     public static DateTimeFormatter getFormatter() {
         return formatter;
     }
+    
+
     
     //BCDelete: 
     //public static void setAmount(double amount) {
