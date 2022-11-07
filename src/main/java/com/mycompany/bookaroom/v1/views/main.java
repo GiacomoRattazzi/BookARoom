@@ -151,10 +151,11 @@ public class main {
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
-                    + "\n[1] to see rooms in the Hotel and add one to Booking"
-                    + "\n[2] to remove a room from Booking"
-                    + "\n[3] to see Room in Booking and confirm it"
-                    + "\n[4] to show user information");
+                    + "\n[1] to Room list"
+                    + "\n[2] to cancel a reservation"
+                    + "\n[3] to comfirm a reservation and check out"
+                    + "\n[4] to show user information"
+                    + "\n[5] to change payment information");
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -214,6 +215,8 @@ public class main {
                 case "4":
                     System.out.println(LoginController.getUserLoggedIn().toString());
                     break;
+                case "5":
+                    System.out.println("Please enter your new Credit Card number:");
                 case "q":
                     System.out.println("Logging out...");
                     break;
