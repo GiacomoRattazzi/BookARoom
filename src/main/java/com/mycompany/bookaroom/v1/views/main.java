@@ -147,16 +147,16 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName, comment;
+        String choice, subChoice, roomName, comment, dayArrival, dayDeparture;
 
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
-                    + "\n[1] to Room list"
-                    + "\n[2] to cancel a reservation"
-                    + "\n[3] to confirm a reservation and check out"
-                    + "\n[4] to show user information"
-                    + "\n[5] to change payment information");
+                    + "\n[1] to see rooms in the Hotel and adding one to Booking"
+                    + "\n[2] to remove a room from Booking"
+                    + "\n[3] to see Room in Booking and confirm it"
+                    + "\n[4] to see website comments and add one"
+                    + "\n[5] to show user information");
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -171,6 +171,11 @@ public class main {
                             case "1":
                                 System.out.println("Enter the name of the room:");
                                 roomName = sc.nextLine();
+                                System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                dayArrival = sc.nextLine();
+                                System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                dayDeparture = sc.nextLine();
+                                
                                 RoomController.setRoomName(roomName);
                                 RoomController.addRoomToBooking();
                                 System.out.println("You have booked "+ roomName +".");
