@@ -176,7 +176,7 @@ public class main {
                                 dayArrival = "";
                                 boolean DADateValid = false;
                                 while(!DADateValid){
-                                    System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                    System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
                                     dayArrival = sc.nextLine();
 
                                     try
@@ -196,12 +196,10 @@ public class main {
                                         System.out.println(dayArrival+" is not a valid Date format.");
                                     }
                                 }
-                                System.out.println("Enter the name date of arrival: (Year,month,day)");
-                                
                                 dayDeparture = "";
                                 boolean DDDateValid = false;
                                 while(!DDDateValid){
-                                    System.out.println("Enter the name date of arrival: (Year,month,day)");
+                                    System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
                                     dayDeparture = sc.nextLine();
 
                                     try
