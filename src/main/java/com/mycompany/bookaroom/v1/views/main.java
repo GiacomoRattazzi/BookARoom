@@ -154,7 +154,7 @@ public class main {
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
-                    + "\n[1] to see rooms in the Hotel and add one to Booking"
+                    + "\n[1] to see rooms and make reservation"
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to see website comments and add one"
@@ -167,7 +167,7 @@ public class main {
                     do {
                         System.out.println("Enter: "
                                 + "\n[q] to go back"
-                                + "\n[1] to add room from the hotel to Booking");
+                                + "\n[1] to make a reservation");
                         subChoice = sc.nextLine();
                         switch (subChoice) {
                             case "1":
@@ -239,7 +239,7 @@ public class main {
                     } while (!subChoice.equals("q"));
                     break;
                 case "2":
-                    System.out.println("Here are your reservations, enter the name of the room you want to remove.");
+                    System.out.println("Here are your reservations, enter the name of the room that you want to remove.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
                     System.out.println("Room name:");
                     roomName = sc.nextLine();

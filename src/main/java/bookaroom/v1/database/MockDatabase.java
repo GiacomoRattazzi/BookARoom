@@ -141,8 +141,8 @@ public class MockDatabase {
         }));
                
         comments = new ArrayList<Comment>();
-        comments.add(new Comment("this is great"));
-        comments.add(new Comment("this is terrible"));
+        comments.add(new Comment("The location is great."));
+        comments.add(new Comment("The breakfast is terrible."));
         
              
         }
