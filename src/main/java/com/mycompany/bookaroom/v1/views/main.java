@@ -9,6 +9,7 @@ import bookaroom.v1.controllers.UserController;
 import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
 import bookaroom.v1.controllers.CommentController;
+import bookaroom.v1.database.MockDatabase;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.exceptions.InvalidCreditCardDateException;
@@ -157,7 +158,7 @@ public class main {
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to see website comments and add one"
-                    + "\n[5] to show user information");
+                    + "\n[5] to show/+change user information");
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -294,6 +295,113 @@ public class main {
                     break;
                 case "5":
                     System.out.println(LoginController.getUserLoggedIn().toString());
+                        do {
+                        System.out.println("Enter: "
+                                + "\n[q] to go back"
+                                + "\n[1] to update user information");
+                        subChoice = sc.nextLine();
+                        switch (subChoice) {
+                            case "1":
+                                String nusername, npassword, nfirstName, nlastName, nemail, nccexpirationdate, ncccode, nccnumber;
+                                System.out.println("Update username:");
+                                nusername = sc.nextLine();
+                                System.out.println("Update first name:");
+                                nfirstName = sc.nextLine();
+                                System.out.println("Update last name:");
+                                nlastName = sc.nextLine();
+                                System.out.println("Update email:");
+                                nemail = sc.nextLine();
+                                System.out.println("Update password:");
+                                npassword = sc.nextLine();
+                                
+                                //new CCnumber:
+                                nccnumber = "";
+                                String code1 = "";
+                                boolean numCorrect = false;
+                                while(!numCorrect){
+
+                                    System.out.println("Update credit card number (16-digit number):"); 
+                                    code1 = sc.nextLine();
+                                    if (code1.length()!=16) {
+                                        System.out.println("The credit card number should a 16-digit number, yours is a "+code1.length()+"-digit number. Please enter it again");
+                                
+                                        }
+                                    else if (code1.length()==16)
+                                        numCorrect =true;
+                                    nccnumber = code1;
+                                }   
+                                
+                                
+                                 //new CCcode:
+                                ncccode = "";
+                                String code2 = "";
+                                boolean codeCorrect = false;
+                                while(!codeCorrect){
+                        
+                                    System.out.println("Enter a verification code (3-digit number):");
+                                    code2 = sc.nextLine();
+                                    if (code2.length()!=3) {
+                                        System.out.println("The credit card number should a 3-digit number, yours is a "+code2.length()+"-digit number. Please enter it again");
+
+                                        }
+                                    else if (code2.length()==3)
+                                    codeCorrect =true;
+                                ncccode = code2;
+                                }
+                                
+                                //new CCexpirationdate
+                                nccexpirationdate = "";
+                                boolean CCDateValid = false;
+                                while(!CCDateValid){
+                                System.out.println("Update expiration date (month/year => MM/yy):");
+                                nccexpirationdate = sc.nextLine();
+                        
+                                try
+                                {
+                                    YearMonth ccexpdateFormat = YearMonth.parse(nccexpirationdate, UserController.getFormatter()); 
+                                    System.out.println(nccexpirationdate+" is valid date format.");
+                                    boolean valid = UserController.getCurrentTime().isBefore(ccexpdateFormat);
+                            
+                                    if (valid==true) {
+                                        System.out.println("Credit Card is still valid.");
+                                        CCDateValid = true;
+                                    } 
+                                    else {
+                                        System.out.println("Credit Card has expired.");
+                                    }
+                                }
+                                catch (DateTimeParseException e)
+                                {
+                                    System.out.println(nccexpirationdate+" is not a valid Date format.");
+                                }
+                                }
+                  
+                                
+                                UserController.setUsername(nusername);
+                                UserController.setFirstName(nfirstName);
+                                UserController.setLastName(nlastName);
+                                UserController.setEmail(nemail);
+                                UserController.setPassword(npassword);
+                                UserController.setCCnumber(nccnumber);
+                                UserController.setCCcode(ncccode);
+                                
+                                
+                                MockDatabase.getInstance().removeAUser(LoginController.getUserLoggedIn());
+                                LoginController.userLogsout();
+                                UserController.createAUser();
+                                LoginController.setUsername(nusername);
+                                LoginController.setPassword(npassword);
+                                LoginController.userLogsIn();
+                                
+                                break;
+                            case "q":
+                                break;
+                            default:
+                                System.out.println("Choice = " + subChoice + " does not exist.");
+                                break;
+                        }
+                    } while (!subChoice.equals("q"));
+                    
                     break;
                 case "q":
                     System.out.println("Logging out...");
