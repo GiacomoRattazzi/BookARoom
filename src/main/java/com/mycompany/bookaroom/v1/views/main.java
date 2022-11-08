@@ -41,7 +41,7 @@ public class main {
                     + "\n[q] to quit the application"
                     + "\n[1] to login"
                     + "\n[2] to create a user account"
-                    + "\n[3] to book a room");
+                    + "\n[3] to see rooms in the hotel");
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
@@ -67,17 +67,17 @@ public class main {
                     email = sc.nextLine();
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
-                    System.out.println("Payment information");
+                    System.out.println("PAYMENT INFORMATION");
                     //CCnumber:
                     ccnumber = "";
                     String code1 = "";
                     boolean numCorrect = false;
                     while(!numCorrect){
 
-                            System.out.println("Enter a credit card number (16-digit):"); 
+                            System.out.println("Enter a credit card number (16-digit number):"); 
                             code1 = sc.nextLine();
                             if (code1.length()!=16) {
-                                System.out.println("The credit card number should have 16 digits, yours has "+code1.length()+" digits. Please enter it again");
+                                System.out.println("The credit card number should a 16-digit number, yours is a "+code1.length()+"-digit number. Please enter it again");
                                 
                             }
                             else if (code1.length()==16)
@@ -90,10 +90,10 @@ public class main {
                     boolean codeCorrect = false;
                     while(!codeCorrect){
                         
-                        System.out.println("Enter the verification code (3-digit):");
+                        System.out.println("Enter a verification code (3-digit number):");
                         code2 = sc.nextLine();
                         if (code2.length()!=3) {
-                            System.out.println("The verification code should be 3 digits, yours has "+code2.length()+" digits. Please enter it again");
+                            System.out.println("The credit card number should a 3-digit number, yours is a "+code2.length()+"-digit number. Please enter it again");
 
                         }
                         else if (code2.length()==3)
@@ -154,11 +154,11 @@ public class main {
         do {
             System.out.println("Enter:"
                     + "\n[q] to log out"
-                    + "\n[1] to see rooms in the Hotel and add one to Booking"
+                    + "\n[1] to see rooms in the Hotel and adding one to Booking"
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to see website comments and add one"
-                    + "\n[5] to show and change user information");
+                    + "\n[5] to show/+change user information");
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -178,7 +178,7 @@ public class main {
                                 dayArrival = "";
                                 boolean DADateValid = false;
                                 while(!DADateValid){
-                                    System.out.println("Enter the date of arrival: (day,month,year = dd/mm/yyyy)");
+                                    System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
                                     dayArrival = sc.nextLine();
 
                                     try
@@ -187,7 +187,7 @@ public class main {
                                         boolean valid = UserController.getCurrentTimeLong().isBefore(dadateFormat);
 
                                         if (valid==true) {
-                                            System.out.println("The arrival date will be "+dayArrival+".");
+                                            System.out.println("The arrival day will be "+dayArrival+".");
                                             DADateValid = true;
                                     } else {
                                         System.out.println(dayArrival+" has already passed. Today's date is " +UserController.getCurrentTimeLong()+".");
@@ -201,7 +201,7 @@ public class main {
                                 dayDeparture = "";
                                 boolean DDDateValid = false;
                                 while(!DDDateValid){
-                                    System.out.println("Enter the date of departure: (day,month,year = dd/mm/yyyy)");
+                                    System.out.println("Enter the name date of departure: (day,month,year = dd/mm/yyyy)");
                                     dayDeparture = sc.nextLine();
 
                                     try
@@ -211,11 +211,11 @@ public class main {
                                         boolean valid = dadateFormat.isBefore(dddateFormat);
 
                                         if (valid==true) {
-                                            System.out.println("The departure date will be "+dayDeparture+".");
+                                            System.out.println("The departure day will be "+dayDeparture+".");
                                             DDDateValid = true;
                                     } else {
-                                        System.out.println("The departure date " +dayDeparture+ 
-                                                " should later then the arrival date, which is "+dayArrival+ ".");
+                                        System.out.println("The departure day " +dayDeparture+ 
+                                                " should later then the arrival day which is "+dayArrival+ ".");
                                     }
                                     }
                                     catch (DateTimeParseException e)
@@ -239,7 +239,7 @@ public class main {
                     } while (!subChoice.equals("q"));
                     break;
                 case "2":
-                    System.out.println("Here are your reservations, enter the name of the room you want to remove.");
+                    System.out.println("Here are the products in Booking, write the name of the room you want to remove.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
                     System.out.println("Room name:");
                     roomName = sc.nextLine();
