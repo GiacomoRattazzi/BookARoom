@@ -126,4 +126,8 @@ public class User {
     public void completeBooking()throws InvalidCreditCardDateException {
         throw new InvalidCreditCardDateException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Object getTotalPrice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

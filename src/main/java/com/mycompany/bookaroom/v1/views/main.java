@@ -160,7 +160,8 @@ public class main {
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to see website comments and add one"
-                    + "\n[5] to show/+change user information");
+                    + "\n[5] to show/+change user information"
+                    + "\n[6] to see payment information");
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -413,6 +414,7 @@ public class main {
                                 LoginController.userLogsIn();
                                 
                                 break;
+                           
                             case "q":
                                 break;
                             default:
@@ -422,6 +424,14 @@ public class main {
                     } while (!subChoice.equals("q"));
                     
                     break;
+                case "6":
+                    System.out.println("Please find your invoice below:");
+                    System.out.println("Room information:");
+                    System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
+                    System.out.println("Total amount due:");
+                    //System.out.println(LoginController.getUserLoggedIn().getPrice().toString())
+
+                    
                 case "q":
                     System.out.println("Logging out...");
                     break;
