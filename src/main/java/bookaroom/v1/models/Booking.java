@@ -1,8 +1,10 @@
 package bookaroom.v1.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,10 +15,14 @@ import java.util.Objects;
 public class Booking {
 
     private ArrayList<Room> rooms;
+    private List<LocalDate> datesbookedLists;
+    private String arrivalday;
+    private String departureday;
     //BCDelete: private double balance;
 
     public Booking() {
         this.rooms = new ArrayList<>();
+        this.datesbookedLists = new ArrayList<>();
         //BCDelete: this.balance = 0.0;
     }
     
@@ -34,9 +40,15 @@ public class Booking {
     */
     public void addRoom(Room room) {
         rooms.add(room);
+        //datesbookedList[0]++;
         //BCdelete: balance += food.getPrice();
     }
-
+    
+    public void addDatesBookedList(LocalDate datesbookedList){
+            datesbookedLists.add(datesbookedList);
+    }
+    
+    
     public void removeRoom(Room room) {
         rooms.remove(room);
         //BCDelete: balance -= food.getPrice();
@@ -44,6 +56,18 @@ public class Booking {
 
     public ArrayList<Room> getRooms() {
         return rooms;
+    }
+    
+    public List<LocalDate> getDatesBooked() {
+        return datesbookedLists;
+    }
+    
+    public String getArrivalDateBooking() {
+        return arrivalday;
+    }
+    
+    public String getDepartureDateBooking() {
+        return departureday;
     }
     /** BCdelete:
     @Override
@@ -72,7 +96,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking: " + Arrays.toString(rooms.toArray());
+        return "Booking: " + Arrays.toString(rooms.toArray())+Arrays.toString(datesbookedLists.toArray());
     }
-
+   
 }
