@@ -5,6 +5,7 @@ import bookaroom.v1.models.User;
 import bookaroom.v1.models.Comment;
 import java.util.ArrayList;
 import java.time.*;
+import java.util.Arrays;
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -33,11 +34,8 @@ public class MockDatabase {
                 add("Maximum capacity: 1"); 
                 add("r001");
             }
-        }, new ArrayList<String>() {
-            {
-                add(LocalDate.of(2012,12,11).toString());
-            }
-        }));
+        }, new ArrayList<> (Arrays.asList())
+        ));
         rooms.add(new Room("Room 2", 250, new ArrayList<String>() {
             {
                 add("Two double beds");
