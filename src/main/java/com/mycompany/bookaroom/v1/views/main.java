@@ -405,13 +405,15 @@ public class main {
                     } while (!subChoice.equals("q"));
                     
                     break;
+                    
                 case "6":
                     System.out.println("Please find your invoice below:");
                     System.out.println("Room information:");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    System.out.println("Total amount due:");
+                    //System.out.println("Total amount due:");
                     //System.out.println(LoginController.getUserLoggedIn().getPrice().toString())
-
+                    System.out.println("Invoice date :"+UserController.getCurrentTime());
+                    System.out.println("Due in 30 days");
                     
                 case "q":
                     System.out.println("Logging out...");

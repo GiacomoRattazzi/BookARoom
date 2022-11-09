@@ -147,7 +147,7 @@ public class MockDatabase {
              
         }
     
-        
+     
     public static MockDatabase getInstance() {
         if (instance == null) {
             instance = new MockDatabase();
@@ -185,6 +185,12 @@ public class MockDatabase {
     
     public ArrayList<Comment> getComments() {
         return comments;
+    }
+
+    private static class foods {
+
+        public foods() {
+        }
     }
 
 
