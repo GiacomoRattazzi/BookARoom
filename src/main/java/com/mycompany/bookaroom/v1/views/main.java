@@ -17,7 +17,9 @@ import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 /**
@@ -226,16 +228,21 @@ public class main {
                                 }
                                 LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
                                 LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
-                                
                                 RoomController.setRoomName(roomName);
                                 RoomController.setRoomDayArrival(dayArrival);
                                 RoomController.setRoomDayDeparture(dayDeparture);
-                              //  RoomController.getDatesBetween(dadateFormat,dddateFormat);
+                                List<LocalDate> bookedDate = dadateFormat.datesUntil(dddateFormat.plusDays(1)).collect(Collectors.toList());
+                                
+                                //RoomController.getDatesBetween(dadateFormat,dddateFormat);
+                                RoomController.setRoomDayDates(bookedDate);
                                 RoomController.addRoomToBooking();
                                 System.out.println(" You have booked "+ roomName +"."
                                         +"\n The arrival day is "+ dayArrival +"."
-                                        +"\n The departure is " + dayDeparture +".");
+                                        +"\n The departure is " + dayDeparture +"."
+                                        +bookedDate);
+                                
                                 break;  
+  
                             case "q":
                                 break;
                             default:

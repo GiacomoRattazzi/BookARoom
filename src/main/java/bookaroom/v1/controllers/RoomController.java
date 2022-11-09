@@ -11,6 +11,7 @@ import bookaroom.v1.database.MockDatabase;
 import bookaroom.v1.exceptions.AlreadyExistsException;
 import bookaroom.v1.models.User;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class RoomController {
             Room r = findRoomByNameInTheHotel();
             //var d = getRoomDayArrival();
             user.getBooking().addRoom(r);
-          //user.getBooking().addDatesBookedList(datesbooked);
+            user.getBooking().addDatesBookedList(datesbooked);
         } catch (DoesNotExistException ex) {
             System.out.println(ex.getMessage());
         }
@@ -105,15 +106,22 @@ public class RoomController {
         RoomController.dayDeparture = dayDeparture;
     }
     
+    public static void setRoomDayDates(List<LocalDate> datesbooked) {
+        RoomController.datesbooked = datesbooked;
+    }
     
     // Find a solution to have the dates in Array if really needed
+   
     /*
     public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
-        LocalDate dates  =    startDate.datesUntil(endDate).collect(Collectors.toList());
-        datesbooked = new ArrayList<LocalDate>(dates);
+        List<LocalDate> datesbooked  =    startDate.datesUntil(endDate).collect(Collectors.toList());
+        //ArrayList<String> datesbooked = dates.stream().toArray(dates[]::new)
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //String datesbooked = dates.format(formatter);
+        //datesbooked = new ArrayList<String>(dates);
         return  datesbooked;
-    }*/
-  
+    }
+  */
     /*List
    protected static Room findRoomByNameAndByDateInBooking() throws AlreadyExistsException {
         for (Room r : LoginController.getUserLoggedIn().getBooking().getRooms()) {

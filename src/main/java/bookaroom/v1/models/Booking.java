@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Spliterator;
 
 /**
  * Software Architectures | DOPLab | UniL
@@ -44,8 +46,8 @@ public class Booking {
         //BCdelete: balance += food.getPrice();
     }
     
-    public void addDatesBookedList(LocalDate datesbookedList){
-            datesbookedLists.add(datesbookedList);
+    public void addDatesBookedList(List<LocalDate> datesbookedList){
+            datesbookedLists.addAll(datesbookedList);
     }
     
     
