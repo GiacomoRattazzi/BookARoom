@@ -20,7 +20,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -152,6 +152,9 @@ public class main {
         }
     public static void userHomePage() {
         String choice, subChoice, roomName, comment, dayArrival, dayDeparture;
+        LocalDate dayArrivalD, dayDepartureD;
+        long difDays;
+        double totalprice;
 
         do {
             System.out.println("Enter:"
@@ -209,9 +212,9 @@ public class main {
 
                                     try
                                     {
-                                        LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
-                                        LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
-                                        boolean valid = dadateFormat.isBefore(dddateFormat);
+                                        LocalDate dayArrivalFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
+                                        LocalDate dayDepartureFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
+                                        boolean valid = dayArrivalFormat.isBefore(dayDepartureFormat);
 
                                         if (valid==true) {
                                             System.out.println("The departure day will be "+dayDeparture+".");
@@ -232,15 +235,26 @@ public class main {
                                 RoomController.setRoomName(roomName);
                                 RoomController.setRoomDayArrival(dayArrival);
                                 RoomController.setRoomDayDeparture(dayDeparture);
-                                List<LocalDate> bookedDate = dadateFormat.datesUntil(dddateFormat.plusDays(1)).collect(Collectors.toList());
+                                List<LocalDate> bookedDate = dadateFormat.datesUntil(dddateFormat).collect(Collectors.toList());
+                                
+                                //set up dates other way
+                                dayArrivalD = LocalDate.parse(dayArrival, UserController.getDateFormatter());  
+                                dayDepartureD = LocalDate.parse(dayDeparture, UserController.getDateFormatter());
+                                difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
+                                //end
+                                
                                 
                                 //RoomController.getDatesBetween(dadateFormat,dddateFormat);
                                 RoomController.setRoomDayDates(bookedDate);
                                 RoomController.addRoomToBooking();
+                                totalprice = RoomController.getRoomPriceTest();
                                 System.out.println(" You have booked "+ roomName +"."
                                         +"\n The arrival day is "+ dayArrival +"."
                                         +"\n The departure is " + dayDeparture +"."
-                                        +bookedDate);
+                                        +"\n Your stay will last "+difDays+" nights."
+                                        +"\n The total price of your stay will be "+ (difDays * totalprice) +".-"
+                                        + "test booked Dates: " +bookedDate);
+                                totalprice = 0;
                                 
                                 break;  
   
@@ -448,4 +462,3 @@ public class main {
 
 
 
-//useless line

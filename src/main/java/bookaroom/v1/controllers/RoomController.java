@@ -110,6 +110,21 @@ public class RoomController {
         RoomController.datesbooked = datesbooked;
     }
     
+    
+    
+    //GET PRICE
+    public static double getRoomPriceTest() {
+        User user = LoginController.getUserLoggedIn();
+        double p = 0;
+        try {
+            Room r = findRoomByNameInTheHotel();
+            p = user.getBooking().GetRoomPrice(r);
+        } catch (DoesNotExistException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+    }
+    
     // Find a solution to have the dates in Array if really needed
    
     /*

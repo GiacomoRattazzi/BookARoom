@@ -95,6 +95,12 @@ public class Booking {
         return false;
     }
     */
+    
+    //PRICE
+    public double GetRoomPrice(Room room) {
+        return room.getPrice();
+    }
+    //ENDPRICE
 
     @Override
     public String toString() {
