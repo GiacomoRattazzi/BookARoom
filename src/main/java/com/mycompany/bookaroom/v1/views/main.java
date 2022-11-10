@@ -177,7 +177,7 @@ public class main {
                                 System.out.println("Enter the name of the room:");
                                 roomName = sc.nextLine();
                                 
-                                
+                                boolean DatesBooked = false;
                                 dayArrival = "";
                                 boolean DADateValid = false;
                                 while(!DADateValid){
