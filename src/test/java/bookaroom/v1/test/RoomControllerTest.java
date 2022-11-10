@@ -13,12 +13,15 @@ import bookaroom.v1.models.User;
 import bookaroom.v1.database.MockDatabase;
 import java.util.ArrayList;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
  *
- * @author jingminwang
+ * @author Team BookARoom
  */
 public class RoomControllerTest {
     
@@ -43,6 +46,28 @@ public class RoomControllerTest {
     }
     
     
-    
+    @BeforeMethod
+    public void setUp() throws Exception {
+        System.out.println("@BeforeMethod setUp");
+    }
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+        System.out.println("@AfterMethod tearDown");
+    }
+
+    // test IndexOutOfBoundsException
+    @Test(expectedExceptions = IndexOutOfBoundsException.class)
+    public void testIndexOutOfBoundsException() {
+        System.out.println("@Test testIndexOutOfBoundsException");
+        MockDatabase.getInstance().getUsers().get(100);
+    }
+
+    // test timeout
+    @Test(timeOut = 1000)
+    public void testTimeOut() throws InterruptedException {
+        System.out.println("@Test testTimeOut");
+        Thread.sleep(500);
+    }
     
 }
