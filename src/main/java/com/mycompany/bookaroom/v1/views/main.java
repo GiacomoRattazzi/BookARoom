@@ -10,10 +10,6 @@ import bookaroom.v1.controllers.LoginController;
 import bookaroom.v1.controllers.RoomController;
 import bookaroom.v1.controllers.CommentController;
 import bookaroom.v1.database.MockDatabase;
-import bookaroom.v1.exceptions.AlreadyExistsException;
-import bookaroom.v1.exceptions.DoesNotExistException;
-import bookaroom.v1.exceptions.InvalidCreditCardDateException;
-import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeParseException;
@@ -195,6 +191,7 @@ public class main {
 
                                         if (valid==true) {
                                             System.out.println("The arrival day will be "+dayArrival+".");
+                                            
                                             DADateValid = true;
                                     } else {
                                         System.out.println(dayArrival+" has already passed. Today's date is " +UserController.getCurrentTimeLong()+".");
