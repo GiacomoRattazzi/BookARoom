@@ -15,15 +15,15 @@ public class Room {
     private ArrayList<String> description;
     private ArrayList<String> datesbooked;
 
-    public Room(String name, double price, ArrayList<String> descriptionAll, ArrayList<String> datesbookedList) {
+    public Room(String name, double price, ArrayList<String> descriptionAll,ArrayList<String> datesbookedList) {
         this.name = name;
         this.price = price;
         description = new ArrayList<>();
         description.addAll(descriptionAll);
-        this.datesbooked = new ArrayList<>();
-        this.datesbooked.addAll(datesbookedList);
+        this.datesbooked = new ArrayList<>(); // this is normaly useless because can not be use
+        this.datesbooked.addAll(datesbookedList); // this is normaly useless because can not be use
     }
-
+// Totally useless ------------------------------------------
     public ArrayList<String> getDescription() {
         return description;
     }
@@ -35,6 +35,11 @@ public class Room {
     public double getPrice() {
         return price;
     }
+    
+    
+    public ArrayList<String> getDates() {
+        return datesbooked;
+    }
 
     public void setPrice(double price) {
         this.price = price;
@@ -42,6 +47,10 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+     public void setDates(ArrayList<String> datesbooked) {
+        this.datesbooked = datesbooked;
     }
 
     @Override

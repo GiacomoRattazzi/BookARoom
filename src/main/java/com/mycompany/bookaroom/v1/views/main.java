@@ -17,8 +17,11 @@ import bookaroom.v1.exceptions.InvalidCreditCardException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
-
+import java.util.stream.Collectors;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 
 /**
  *
@@ -149,7 +152,10 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName, comment, dayArrival, dayDeparture;
+        String choice, subChoice, roomName, comment, dayArrival, dayDeparture, r;
+        LocalDate dayArrivalD, dayDepartureD;
+        long difDays;
+        double totalprice;
 
         do {
             System.out.println("Enter:"
@@ -207,12 +213,13 @@ public class main {
 
                                     try
                                     {
-                                        LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
-                                        LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
-                                        boolean valid = dadateFormat.isBefore(dddateFormat);
+                                        LocalDate dayArrivalFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
+                                        LocalDate dayDepartureFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
+                                        boolean valid = dayArrivalFormat.isBefore(dayDepartureFormat);
 
                                         if (valid==true) {
                                             System.out.println("The departure day will be "+dayDeparture+".");
+                                            
                                             DDDateValid = true;
                                     } else {
                                         System.out.println("The departure day " +dayDeparture+ 
@@ -224,13 +231,41 @@ public class main {
                                         System.out.println(dayDeparture+" is not a valid Date format.");
                                     }
                                 }
-                                
+                                LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
+                                LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
                                 RoomController.setRoomName(roomName);
+                                RoomController.setRoomDayArrival(dayArrival);
+                                RoomController.setRoomDayDeparture(dayDeparture);
+                                List<LocalDate> bookedDate = dadateFormat.datesUntil(dddateFormat).collect(Collectors.toList());
+                                
+                                //set up dates other way
+                                dayArrivalD = LocalDate.parse(dayArrival, UserController.getDateFormatter());  
+                                dayDepartureD = LocalDate.parse(dayDeparture, UserController.getDateFormatter());
+                                difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
+                                //end
+                                
+                                // Dico with all the dates for a specific room
+                                RoomController.getBookRoomAndDates(roomName, bookedDate);
+                                
+                                HashMap<String, List<LocalDate>> Hmap;
+                                Hmap = RoomController.getBookRoomAndDates(roomName, bookedDate);
+                                RoomController.setBookRoomAndDates(Hmap);
+                                System.out.println(RoomController.getBookRoomAndDates(roomName, bookedDate));
+                                
+                                //RoomController.getDatesBetween(dadateFormat,dddateFormat);
+                                RoomController.setRoomDayDates(bookedDate);
                                 RoomController.addRoomToBooking();
+                                totalprice = RoomController.getRoomPriceTest();
                                 System.out.println(" You have booked "+ roomName +"."
                                         +"\n The arrival day is "+ dayArrival +"."
-                                        +"\n The departure is " + dayDeparture +".");
+                                        +"\n The departure is " + dayDeparture +"."
+                                        +"\n Your stay will last "+difDays+" nights."
+                                        +"\n The total price of your stay will be "+ (difDays * totalprice) +".-"
+                                        + "test booked Dates: " +bookedDate);
+                                totalprice = 0;
+                                
                                 break;  
+  
                             case "q":
                                 break;
                             default:
@@ -250,11 +285,17 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
+                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
+                    
+                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getArrDay());
+                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartDay());
+                    
                     System.out.println("Here is the total amount for all the room(s) that you have booked.");
                     // TODO Total amount for the room(s) that the user has booked
                     //System.out.println(LoginController.getUserLoggedIn().getTotalPrice().toString());
-                    //YearMonth currTime = YearMonth.now();
                     System.out.println("Current time :"+UserController.getCurrentTime());
+                    System.out.println(LoginController.getUserLoggedIn().getBooking().getArrivalDateBooking());
+                    System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartureDateBooking());
                     System.out.println("Credit Card expiration date:"+LoginController.getUserLoggedIn().getCCExpirationDate());
                     YearMonth ccexpdateInputFormat = YearMonth.parse(LoginController.getUserLoggedIn().getCCExpirationDate(), UserController.getFormatter());
                     var CCexpdate = ccexpdateInputFormat.plusMonths(1);
@@ -385,7 +426,7 @@ public class main {
                                 UserController.setPassword(npassword);
                                 UserController.setCCnumber(nccnumber);
                                 UserController.setCCcode(ncccode);
-                                
+                                UserController.setCCexpirationDate(nccexpirationdate);
                                 
                                 MockDatabase.getInstance().removeAUser(LoginController.getUserLoggedIn());
                                 LoginController.userLogsout();
@@ -431,4 +472,3 @@ public class main {
 
 
 
-//useless line
