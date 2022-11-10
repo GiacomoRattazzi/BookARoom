@@ -148,9 +148,9 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName, comment, dayArrival, dayDeparture, r;
+        String choice, subChoice, roomName = null, comment, dayArrival = null, dayDeparture = null, r;
         LocalDate dayArrivalD, dayDepartureD;
-        long difDays;
+        long difDays = 0;
         double totalprice;
 
         do {
@@ -160,8 +160,8 @@ public class main {
                     + "\n[2] to remove a room from Booking"
                     + "\n[3] to see Room in Booking and confirm it"
                     + "\n[4] to see website comments and add one"
-                    + "\n[5] to show/+change user information"
-                    + "\n[6] to see payment information");
+                    + "\n[5] to show/+change user information");
+                   
                     //TODO if we finished the rest, do restaurants preferences
             choice = sc.nextLine();
             switch (choice) {
@@ -444,15 +444,7 @@ public class main {
                     
                     break;
                     
-                case "6":
-                    System.out.println("Please find your invoice below:");
-                    System.out.println("Room information:");
-                    System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    //System.out.println("Total amount due:");
-                    //System.out.println(LoginController.getUserLoggedIn().getPrice().toString())
-                    System.out.println("Invoice date :"+UserController.getCurrentTime());
-                    System.out.println("Due in 30 days");
-                    
+                  
                 case "q":
                     System.out.println("Logging out...");
                     break;

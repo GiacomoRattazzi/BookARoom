@@ -23,6 +23,12 @@ public class Room {
         this.datesbooked = new ArrayList<>(); // this is normaly useless because can not be use
         this.datesbooked.addAll(datesbookedList); // this is normaly useless because can not be use
     }
+
+    public Room(String room_1, int i, ArrayList<String> arrayList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 // Totally useless ------------------------------------------
     public ArrayList<String> getDescription() {
         return description;
