@@ -13,6 +13,7 @@ import bookaroom.v1.models.User;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +28,23 @@ public class RoomController {
     private static String dayArrival = "";
     private static String dayDeparture ="";
     private static List<LocalDate> datesbooked;
+    private static HashMap<String, List<LocalDate>> Map;
 
     public static void addRoomToBooking() {
+        User user = LoginController.getUserLoggedIn();
+        try {
+            Room r = findRoomByNameInTheHotel();
+            //var d = getRoomDayArrival();
+            user.getBooking().addRoom(r);
+            user.getBooking().addDatesBookedList(datesbooked);
+            user.getBooking().addBookedRoomAndDates(Map);
+        } catch (DoesNotExistException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+/*
+    public static void addDatesToRoom() {
         User user = LoginController.getUserLoggedIn();
         try {
             Room r = findRoomByNameInTheHotel();
@@ -39,7 +55,7 @@ public class RoomController {
             System.out.println(ex.getMessage());
         }
     }
-
+  */  
     public static void removeRoomFromBooking() {
         User user = LoginController.getUserLoggedIn();
         try {
@@ -50,7 +66,7 @@ public class RoomController {
             System.out.println(ex.getMessage());
         }
     }
-
+// TODO put this in form of an exception
     protected static boolean doesRoomExistInBooking() {
         for (Room r : LoginController.getUserLoggedIn().getBooking().getRooms()) {
             if (r.getName().equals(roomName)) {
@@ -75,7 +91,7 @@ public class RoomController {
                 return r;
             }
         }
-        throw new DoesNotExistException("Room " + roomName + " does not exist.");
+        throw new DoesNotExistException("Room " + roomName + " does not exist or is not booked.");
     }
 
     public static ArrayList<Room> getRooms() {
@@ -93,6 +109,28 @@ public class RoomController {
     public static String getRoomDayDeparture() {
         return dayDeparture;
     }
+    
+    public static HashMap<String, List<LocalDate>> getBookRoomAndDates(String BookedRoomName, List<LocalDate> BookedRoomDates) {
+        HashMap<String, List<LocalDate>> Hmap = new HashMap<>();
+        Hmap.put(BookedRoomName,BookedRoomDates);
+        //Hmap.get(); // if needed 
+        return Hmap;
+    }
+    
+    public static void setBookRoomAndDates(HashMap<String, List<LocalDate>> Map) {
+        RoomController.Map = Map;
+    }
+    
+    /*
+    public static void setBookRoomAndDates(String BookedRoomName, List<LocalDate> BookedRoomDates,HashMap<String, List<LocalDate>> Map) {
+        HashMap<String, List<LocalDate>> Hmap = new HashMap<>();
+        Map.put(BookedRoomName,BookedRoomDates);
+        RoomController.Map = Map;
+    }
+    /*
+    public static void setBookRoomAndDates(HashMap<String, List<LocalDate>> Map) {
+         RoomController.Map = Map;
+    }*/
     
     public static void setRoomName(String roomName) {
         RoomController.roomName = roomName;

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Spliterator;
@@ -20,11 +20,13 @@ public class Booking {
     private List<LocalDate> datesbookedLists;
     private String arrivalday;
     private String departureday;
+    private HashMap<String, List<LocalDate>> maps;
     //BCDelete: private double balance;
 
     public Booking() {
         this.rooms = new ArrayList<>();
         this.datesbookedLists = new ArrayList<>();
+        this.maps = new HashMap<>();
         //BCDelete: this.balance = 0.0;
     }
     
@@ -40,6 +42,11 @@ public class Booking {
     *    return balance;
     *}
     */
+    
+    public void addBookedRoomAndDates(HashMap<String, List<LocalDate>> map){
+        maps.putAll(map);
+    }
+    
     public void addRoom(Room room) {
         rooms.add(room);
         //datesbookedList[0]++;
@@ -47,21 +54,28 @@ public class Booking {
     }
     
     public void addDatesBookedList(List<LocalDate> datesbookedList){
-            datesbookedLists.addAll(datesbookedList);
+        datesbookedLists.addAll(datesbookedList);
     }
     
     
     public void removeRoom(Room room) {
         rooms.remove(room);
-        //BCDelete: balance -= food.getPrice();
     }
-
+    /*
+    public void removeBookedRoomAndDates(Room room) {
+        maps.remove(room);
+    }
+*/
     public ArrayList<Room> getRooms() {
         return rooms;
     }
     
     public List<LocalDate> getDatesBooked() {
         return datesbookedLists;
+    }
+    
+    public HashMap<String, List<LocalDate>> getBookedRoomAndDates() {
+        return maps;
     }
     
     public String getArrivalDateBooking() {
@@ -104,7 +118,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking: " + Arrays.toString(rooms.toArray())+Arrays.toString(datesbookedLists.toArray());
+        return "Booking: " + Arrays.toString(rooms.toArray())+Arrays.toString(datesbookedLists.toArray()) +maps;
     }
    
 }

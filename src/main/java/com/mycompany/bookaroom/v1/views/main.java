@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 
 /**
  *
@@ -151,7 +152,7 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName, comment, dayArrival, dayDeparture;
+        String choice, subChoice, roomName, comment, dayArrival, dayDeparture, r;
         LocalDate dayArrivalD, dayDepartureD;
         long difDays;
         double totalprice;
@@ -243,6 +244,13 @@ public class main {
                                 difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
                                 //end
                                 
+                                // Dico with all the dates for a specific room
+                                RoomController.getBookRoomAndDates(roomName, bookedDate);
+                                
+                                HashMap<String, List<LocalDate>> Hmap;
+                                Hmap = RoomController.getBookRoomAndDates(roomName, bookedDate);
+                                RoomController.setBookRoomAndDates(Hmap);
+                                System.out.println(RoomController.getBookRoomAndDates(roomName, bookedDate));
                                 
                                 //RoomController.getDatesBetween(dadateFormat,dddateFormat);
                                 RoomController.setRoomDayDates(bookedDate);
@@ -277,7 +285,7 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
+                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
                     
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getArrDay());
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartDay());
