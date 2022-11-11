@@ -176,9 +176,9 @@ public class main {
                             case "1":
                                 System.out.println("Enter the name of the room:");
                                 roomName = sc.nextLine();
-                                
-                                boolean DatesBooked = false;
                                 dayArrival = "";
+                                dayDeparture = "";
+                                                              
                                 boolean DADateValid = false;
                                 while(!DADateValid){
                                     System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
@@ -202,7 +202,7 @@ public class main {
                                         System.out.println(dayArrival+" is not a valid Date format.");
                                     }
                                 }
-                                dayDeparture = "";
+                                
                                 boolean DDDateValid = false;
                                 while(!DDDateValid){
                                     System.out.println("Enter the name date of departure: (day,month,year = dd/mm/yyyy)");
@@ -228,16 +228,32 @@ public class main {
                                         System.out.println(dayDeparture+" is not a valid Date format.");
                                     }
                                 }
-                                LocalDate dadateFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
-                                LocalDate dddateFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
-                                RoomController.setRoomName(roomName);
-                                RoomController.setRoomDayArrival(dayArrival);
-                                RoomController.setRoomDayDeparture(dayDeparture);
-                                List<LocalDate> bookedDate = dadateFormat.datesUntil(dddateFormat).collect(Collectors.toList());
-                                
+                               /*
+                                try
+                                    {
+                                        LocalDate dayArrivalFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
+                                        LocalDate dayDepartureFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
+                                        List<LocalDate> bookedDateTest = dayArrivalFormat.datesUntil(dayDepartureFormat).collect(Collectors.toList());
+                                        HashMap<String, List<LocalDate>> HmapTest;
+                                        HmapTest.
+                                        boolean valid = dmap.containsKey("Unknown Friend");
+
+                                        if (valid==true) {
+                                            System.out.println("The departure day will be "+dayDeparture+".");
+                                    } else {
+                                        System.out.println("The departure day " +dayDeparture+ 
+                                                " should later then the arrival day which is "+dayArrival+ ".");
+                                    }
+                                    }
+                                    catch (DateTimeParseException e)
+                                    {
+                                        System.out.println(dayDeparture+" is not a valid Date format.");
+                                    }
+                               */
                                 //set up dates other way
                                 dayArrivalD = LocalDate.parse(dayArrival, UserController.getDateFormatter());  
                                 dayDepartureD = LocalDate.parse(dayDeparture, UserController.getDateFormatter());
+                                List<LocalDate> bookedDate = dayArrivalD.datesUntil(dayDepartureD).collect(Collectors.toList());
                                 difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
                                 //end
                                 
@@ -246,10 +262,21 @@ public class main {
                                 
                                 HashMap<String, List<LocalDate>> Hmap;
                                 Hmap = RoomController.getBookRoomAndDates(roomName, bookedDate);
+                                
+                                // the list with only the dates that the room are booked
+                                HashMap<String, List<LocalDate>> Map2;
+                                Map2 = new HashMap<>(); // get the list of dates and make a putAll and then compare the 2 (LoginController.getUserLoggedIn().getBooking().toString())
+                                Map2.putAll(Hmap); // issu is that it doesn't give any expection message
+                                
+                                System.out.println("map1 == map2 : " + Hmap.equals(Map2)); // to compare the two, if they are not the same it returns false
+                                
                                 RoomController.setBookRoomAndDates(Hmap);
                                 System.out.println(RoomController.getBookRoomAndDates(roomName, bookedDate));
                                 
                                 //RoomController.getDatesBetween(dadateFormat,dddateFormat);
+                                RoomController.setRoomName(roomName);
+                                RoomController.setRoomDayArrival(dayArrival);
+                                RoomController.setRoomDayDeparture(dayDeparture);
                                 RoomController.setRoomDayDates(bookedDate);
                                 RoomController.addRoomToBooking();
                                 totalprice = RoomController.getRoomPriceTest();

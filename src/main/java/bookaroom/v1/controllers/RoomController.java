@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -112,7 +113,7 @@ public class RoomController {
     
     public static HashMap<String, List<LocalDate>> getBookRoomAndDates(String BookedRoomName, List<LocalDate> BookedRoomDates) {
         HashMap<String, List<LocalDate>> Hmap = new HashMap<>();
-        Hmap.put(BookedRoomName,BookedRoomDates);
+        Hmap.put(BookedRoomName,BookedRoomDates); // putAll correctes the problem but it doesn't work here
         //Hmap.get(); // if needed 
         return Hmap;
     }
