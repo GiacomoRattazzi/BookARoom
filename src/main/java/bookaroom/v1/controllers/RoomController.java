@@ -1,4 +1,3 @@
-
 package bookaroom.v1.controllers;
 
 import bookaroom.v1.exceptions.DoesNotExistException;
@@ -19,9 +18,20 @@ public class RoomController {
     private static String roomName = "";
     private static String dayArrival = "";
     private static String dayDeparture ="";
-    private static List<LocalDate> datesbooked;
+    private static String datesbooked = "";
     private static HashMap<String, List<LocalDate>> Map;
 
+
+    public static void addDatesToBooking() {
+        User user = LoginController.getUserLoggedIn();
+        user.getBooking().addBookedRoomAndDates(roomName, datesbooked);
+        }
+    
+    
+    public static void setRoomDates(String roomanddates) {
+        RoomController.datesbooked = roomanddates;
+    }
+  
     public static void addRoomToBooking() {
         User user = LoginController.getUserLoggedIn();
         try {
@@ -32,6 +42,8 @@ public class RoomController {
             System.out.println(ex.getMessage());
         }
     }
+    
+
     
     public static boolean checkRoomExists() {
         for (Room r : MockDatabase.getInstance().getRooms()) {
@@ -123,10 +135,11 @@ public class RoomController {
     public static void setRoomDayDeparture(String dayDeparture) {
         RoomController.dayDeparture = dayDeparture;
     }
-    
+    /*
     public static void setRoomDayDates(List<LocalDate> datesbooked) {
         RoomController.datesbooked = datesbooked;
     }
+*/
     
     //GET PRICE
     public static double getRoomPriceTest() {
@@ -140,4 +153,7 @@ public class RoomController {
         }
         return p;
     }
+    
+    
+
 }

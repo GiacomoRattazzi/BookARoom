@@ -31,15 +31,12 @@ public class MockDatabase {
         //bookedDates.put("Room 1", test);
         
         bookedDates = new HashMap<String, ArrayList<LocalDate>>();
-        test.add(LocalDate.of(2022,12,11));
-        test.add(LocalDate.of(2023,12,11));
-        test.add(LocalDate.of(2024,12,11));
-        test.clear();
-        bookedDates.put("Room 1", test);
         test.add(LocalDate.of(2026,12,11));
         test.add(LocalDate.of(2027,12,11));
         test.add(LocalDate.of(2028,12,11));
-        bookedDates.put("Room 2", test);
+        bookedDates.put("Room 1", test);
+        test.clear();
+        
         users = new ArrayList<User>();
         users.add(new User("jwang", "jingmin", "wang", "jingmin.wang@unil.ch", "1234","0000000000000000","123","10/26"));
         users.add(new User("gratt", "giacomo", "rattazzi", "giacomo.rattazzi@gmail.com", "1234", "0000000000000000","123","10/26"));
@@ -159,8 +156,8 @@ public class MockDatabase {
         }));
                
         comments = new ArrayList<Comment>();
-        comments.add(new Comment("this is great"));
-        comments.add(new Comment("this is terrible"));
+        comments.add(new Comment("Paul: this is great (2022-10-08)"));
+        comments.add(new Comment("Marine: this is terrible (2022-12-08)"));
         
              
         }

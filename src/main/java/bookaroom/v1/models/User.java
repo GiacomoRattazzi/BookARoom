@@ -1,5 +1,7 @@
 package bookaroom.v1.models;
 
+import bookaroom.v1.exceptions.InvalidCreditCardDateException;
+
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -114,6 +116,10 @@ public class User {
                 + "\nEmail: " + this.email
                 + "\nCredit Card information:\n   - number: ****************" + "\n   - code: ***" + "\n   - expiration date: " + this.CCexpirationdate
                 + "\n" + this.booking.toString();
+    }
+    public void completeBooking()throws InvalidCreditCardDateException {
+        booking.emptyBooking();
+        throw new InvalidCreditCardDateException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

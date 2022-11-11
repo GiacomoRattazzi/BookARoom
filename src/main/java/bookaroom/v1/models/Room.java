@@ -74,7 +74,6 @@ public class Room {
         return "Room{"
                 + "\nName=" + name
                 + "\nPrice=" + price
-                + "\nDescription=" + Arrays.toString(description.toArray()) + '}'
-                + "\nDatesBooked=" + Arrays.toString(datesbooked.toArray()) + '}';
+                + "\nDescription=" + Arrays.toString(description.toArray()) + '}';
     }   
 }

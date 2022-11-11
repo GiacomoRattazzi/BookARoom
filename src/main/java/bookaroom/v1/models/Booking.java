@@ -12,6 +12,8 @@ import java.util.List;
  * @author Team BookARoom
  */
 
+
+
 public class Booking {
 
     private ArrayList<Room> rooms;
@@ -19,16 +21,19 @@ public class Booking {
     private String arrivalday;
     private String departureday;
     private HashMap<String, List<LocalDate>> maps;
+    private ArrayList<String> roomsbookedTest;
 
     public Booking() {
         this.rooms = new ArrayList<>();
         this.datesbookedLists = new ArrayList<>();
         this.maps = new HashMap<>();
+        this.roomsbookedTest = new ArrayList<String>();
+        
         //BCDelete: this.balance = 0.0;
     }
     
-    public void addBookedRoomAndDates(HashMap<String, List<LocalDate>> map){
-        maps.putAll(map);
+    public void addBookedRoomAndDates(String roomName, String roomAndBookedDates){
+        roomsbookedTest.add(roomName +": " + roomAndBookedDates);
     }
     
     public void addRoom(Room room) {
@@ -63,6 +68,10 @@ public class Booking {
     public String getDepartureDateBooking() {
         return departureday;
     }
+    public void emptyBooking() {
+        rooms.clear();
+        roomsbookedTest.clear();
+    }
     
     //PRICE
     public double GetRoomPrice(Room room) {
@@ -72,7 +81,8 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking: " + Arrays.toString(rooms.toArray())+Arrays.toString(datesbookedLists.toArray()) +maps;
+        return "Booking: " + Arrays.toString(rooms.toArray()) + "\n" + "Booked Dates:" +roomsbookedTest;
+                
     }
    
 }

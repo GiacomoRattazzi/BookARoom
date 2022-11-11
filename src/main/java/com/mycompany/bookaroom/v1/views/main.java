@@ -153,6 +153,7 @@ public class main {
         LocalDate dayArrivalD, dayDepartureD;
         long difDays = 0;
         double totalprice;
+        String booked = "";
         
 
         do {
@@ -160,7 +161,7 @@ public class main {
                     + "\n[q] to log out"
                     + "\n[1] to see rooms in the Hotel and add one to Booking"
                     + "\n[2] to remove a room from Booking"
-                    + "\n[3] to see Room in Booking and confirm it"
+                    + "\n[3] to see Rooms in Booking and to confirm it"
                     + "\n[4] to see website comments and add one"
                     + "\n[5] to show/+change user information");
                    
@@ -248,22 +249,26 @@ public class main {
                                 List<LocalDate> bookedDate = dayArrivalD.datesUntil(dayDepartureD).collect(Collectors.toList());
                                 difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
                                 //end
-                                
+                                //testingFinal:
+                                String temp = "";
+                                //
+                                String temp2 = "";
                                 boolean roomEmpty = true;
                                 try { 
                                 LocalDate test1 = null;
                                 for (LocalDate d : bookedDate) {
                                     test1 = d;
-
+                                    
                                     ArrayList<LocalDate> test2;
                                     for (HashMap.Entry<String, ArrayList<LocalDate>> a : RoomController.getBookedDates().entrySet()) {
                                         if (a.getKey().equals(roomName)) {
                                             test2 = a.getValue();
-
+                                            
                                             LocalDate test3 =null;
                                             for (LocalDate v : test2){
                                                 if ((test1.toString().equals(v.toString())) == true) {
                                                     roomEmpty = false;
+                                                    temp2 = v.toString();
                                                     System.out.println("breaking");
                                                     break;
                                             }
@@ -277,7 +282,9 @@ public class main {
                                     {
                                         System.out.println(e);
                                     }
-                                System.out.println(roomEmpty);
+                                
+                                
+                                
                                 //RoomController.getDatesBetween(dadateFormat,dddateFormat);
                                 if (roomEmpty == true) {
                                     RoomController.setRoomName(roomName);
@@ -285,16 +292,18 @@ public class main {
                                     //RoomController.setRoomDayDeparture(dayDeparture);
                                     //RoomController.setRoomDayDates(bookedDate);
                                     RoomController.addRoomToBooking();
+                                    RoomController.setRoomDates(bookedDate.toString());
+                                    RoomController.addDatesToBooking();
                                     totalprice = RoomController.getRoomPriceTest();
-                                    System.out.println(" You have booked "+ roomName +"."
+                                    System.out.println(" You are booking "+ roomName +"."
                                             +"\n The arrival day is "+ dayArrival +"."
                                             +"\n The departure is " + dayDeparture +"."
                                             +"\n Your stay will last "+difDays+" nights."
                                             +"\n The total price of your stay will be "+ (difDays * totalprice) +".-"
-                                            + "test booked Dates: " +bookedDate);
+                                            +"\n booked Dates: " +bookedDate);
                                     totalprice = 0;
                                 }
-                                    else {System.out.println("Dates already booked");
+                                    else {System.out.println("Date already booked: ");
                                 
                                 }
 
@@ -321,17 +330,7 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
-                    
-                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getArrDay());
-                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartDay());
-                    
-                    System.out.println("Here is the total amount for all the room(s) that you have booked.");
-                    // TODO Total amount for the room(s) that the user has booked
-                    //System.out.println(LoginController.getUserLoggedIn().getTotalPrice().toString());
                     System.out.println("Current time :"+UserController.getCurrentTime());
-                    System.out.println(LoginController.getUserLoggedIn().getBooking().getArrivalDateBooking());
-                    System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartureDateBooking());
                     System.out.println("Credit Card expiration date:"+LoginController.getUserLoggedIn().getCCExpirationDate());
                     YearMonth ccexpdateInputFormat = YearMonth.parse(LoginController.getUserLoggedIn().getCCExpirationDate(), UserController.getFormatter());
                     var CCexpdate = ccexpdateInputFormat.plusMonths(1);
@@ -342,9 +341,33 @@ public class main {
                     } else {
                         System.out.println("Credit Card has expired.");
                     } 
-                    //UserController.completeBooking();
-                    //RoomController.setRoomName(roomName);
-                    //RoomController.removeRoomFromBooking();
+                    do {
+                        System.out.println("Enter: "
+                                + "\n[q] to go back"
+                                + "\n[1] to confirm all bookings"
+                                + "\n[2] to booked");
+                        subChoice = sc.nextLine();
+                        switch (subChoice) {
+                            case "1":
+                            //RoomController.addRoomBooked(LoginController.getUserLoggedIn().getBooking().toString());
+
+                            //System.out.println(LoginController.getUserLoggedIn().getBooking().toString2());
+                            
+                            booked = LoginController.getUserLoggedIn().getBooking().toString();
+                           
+                            UserController.completeBooking();
+                           
+                            break;  
+                            case "2":
+                                System.out.println(booked);
+                            case "q":
+                                break;
+                            default:
+                                System.out.println("Choice = " + subChoice + " does not exist.");
+                                break;
+                        }
+                    } while (!subChoice.equals("q"));
+                    
                     break;
                     		
                 case "4":

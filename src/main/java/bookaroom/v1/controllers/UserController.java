@@ -174,5 +174,13 @@ public class UserController {
         UserController.CCexpirationdate = CCexpirationdate;
     } 
     
+    public static void completeBooking() {
+        try {
+            LoginController.getUserLoggedIn().completeBooking();
+        } catch (InvalidCreditCardDateException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
 
 }

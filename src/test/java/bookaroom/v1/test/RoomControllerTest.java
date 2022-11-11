@@ -114,7 +114,7 @@ public class RoomControllerTest {
     RoomController.setRoomName(roomName);
     RoomController.setRoomDayArrival(dayArrival);
     RoomController.setRoomDayDeparture(dayDeparture);   
-    RoomController.setRoomDayDates(bookedDate);
+    //RoomController.setRoomDayDates(bookedDate);
     RoomController.addRoomToBooking();
     
     // find the room in the booking
