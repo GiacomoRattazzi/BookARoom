@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class RoomController {
 
     private static String roomName = "";
+    private static String roomNameTemp = "";
     private static String dayArrival = "";
     private static String dayDeparture ="";
     private static List<LocalDate> datesbooked;
@@ -44,6 +45,16 @@ public class RoomController {
         }
     }
     
+    public static boolean checkRoomExists() {
+ 
+        for (Room r : MockDatabase.getInstance().getRooms()) {
+            if (r.getName().equals(roomName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 /*
     public static void addDatesToRoom() {
         User user = LoginController.getUserLoggedIn();
@@ -86,7 +97,7 @@ public class RoomController {
         throw new DoesNotExistException("Room " + roomName + " does not exist.");
     }
 
-    protected static Room findRoomByNameInBooking() throws DoesNotExistException {
+    public static Room findRoomByNameInBooking() throws DoesNotExistException {
         for (Room r : LoginController.getUserLoggedIn().getBooking().getRooms()) {
             if (r.getName().equals(roomName)) {
                 return r;

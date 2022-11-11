@@ -148,7 +148,7 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName = null, comment, dayArrival = null, dayDeparture = null, r;
+        String choice, subChoice, roomName = null, comment, dayArrival = null, dayDeparture = null, r, roomNameTemp = null;
         LocalDate dayArrivalD, dayDepartureD;
         long difDays = 0;
         double totalprice;
@@ -172,13 +172,22 @@ public class main {
                                 + "\n[q] to go back"
                                 + "\n[1] to add room from the hotel to Booking");
                         subChoice = sc.nextLine();
+                        
                         switch (subChoice) {
                             case "1":
-                                System.out.println("Enter the name of the room:");
-                                roomName = sc.nextLine();
+                                boolean roomnameValid = false;
+                                while(roomnameValid == false) {
+                                    System.out.println("Enter the name of the room:");
+                                    roomName = sc.nextLine();
+                                    RoomController.setRoomName(roomName);
+                                    if (RoomController.checkRoomExists() == false){
+                                        System.out.println("The room does not exist. Please Try again");
+                                    } else { roomnameValid = true;
+                                                }
+                                }
                                 dayArrival = "";
                                 dayDeparture = "";
-                                                              
+                                                           
                                 boolean DADateValid = false;
                                 while(!DADateValid){
                                     System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
