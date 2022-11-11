@@ -11,9 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Software Architectures | DOPLab | UniL
- *
- * @author Team BookARoom
+@author Team BookARoom
  */
 
 public class RoomController {
@@ -30,8 +28,6 @@ public class RoomController {
             Room r = findRoomByNameInTheHotel();
             //var d = getRoomDayArrival();
             user.getBooking().addRoom(r);
-            user.getBooking().addDatesBookedList(datesbooked);
-            user.getBooking().addBookedRoomAndDates(Map);
         } catch (DoesNotExistException ex) {
             System.out.println(ex.getMessage());
         }
@@ -87,6 +83,12 @@ public class RoomController {
     public static ArrayList<Room> getRooms() {
         return MockDatabase.getInstance().getRooms();
     }
+
+    //TEST
+    public static HashMap<String, ArrayList<LocalDate>> getBookedDates() {
+        return MockDatabase.getInstance().getBookedDates();
+    }
+    //END TEST
 
     public static String getRoomName() {
         return roomName;

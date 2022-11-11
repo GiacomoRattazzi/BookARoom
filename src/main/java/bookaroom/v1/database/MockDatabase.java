@@ -1,4 +1,3 @@
-
 package bookaroom.v1.database;
 
 import bookaroom.v1.models.Room;
@@ -7,6 +6,8 @@ import bookaroom.v1.models.Comment;
 import java.util.ArrayList;
 import java.time.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -19,16 +20,34 @@ public class MockDatabase {
     private ArrayList<User> users;
     private ArrayList<Room> rooms;
     private ArrayList<Comment> comments;
-    
+    private HashMap<String, ArrayList<LocalDate>> bookedDates; 
+    private ArrayList<LocalDate> test; 
     private MockDatabase() {
-        users = new ArrayList<>();
+        
+        //bookedDates = new HashMap<String, ArrayList<LocalDate>>();
+        test = new ArrayList<LocalDate>();
+        //test.add(LocalDate.of(2012,12,11).toString());
+        //test.add(LocalDate.of(2013,12,11).toString());
+        //bookedDates.put("Room 1", test);
+        
+        bookedDates = new HashMap<String, ArrayList<LocalDate>>();
+        test.add(LocalDate.of(2022,12,11));
+        test.add(LocalDate.of(2023,12,11));
+        test.add(LocalDate.of(2024,12,11));
+        test.clear();
+        bookedDates.put("Room 1", test);
+        test.add(LocalDate.of(2026,12,11));
+        test.add(LocalDate.of(2027,12,11));
+        test.add(LocalDate.of(2028,12,11));
+        bookedDates.put("Room 2", test);
+        users = new ArrayList<User>();
         users.add(new User("jwang", "jingmin", "wang", "jingmin.wang@unil.ch", "1234","0000000000000000","123","10/26"));
         users.add(new User("gratt", "giacomo", "rattazzi", "giacomo.rattazzi@gmail.com", "1234", "0000000000000000","123","10/26"));
         users.add(new User("danes", "daniel", "do vale anes", "daniel.dovaleanes@gmail.com", "1234","0000000000000000","123","10/26"));
         users.add(new User("afarh", "ahmed", "farhat", "ahmed.farhat@gmail.com", "1234", "0000000000000000","123","10/26"));
 
     
-        rooms = new ArrayList<>();
+        rooms = new ArrayList<Room>();
         rooms.add(new Room("Room 1", 200, new ArrayList<String>() {
             {
                 add("One double bed");
@@ -139,12 +158,14 @@ public class MockDatabase {
             }
         }));
                
-        comments = new ArrayList<>();
+        comments = new ArrayList<Comment>();
         comments.add(new Comment("this is great"));
         comments.add(new Comment("this is terrible"));
+        
              
         }
     
+     
     public static MockDatabase getInstance() {
         if (instance == null) {
             instance = new MockDatabase();
@@ -162,6 +183,7 @@ public class MockDatabase {
     public void addAComment(Comment comment) {
         comments.add(comment);
     }
+
 
     public void removeAUser(User user) {
         users.remove(user);
@@ -182,5 +204,10 @@ public class MockDatabase {
     public ArrayList<Comment> getComments() {
         return comments;
     }
+    
+    public HashMap<String, ArrayList<LocalDate>> getBookedDates() {
+        return bookedDates;
+    }
 
 }
+

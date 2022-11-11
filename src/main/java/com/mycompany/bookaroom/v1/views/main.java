@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.bookaroom.v1.views;
 
 import bookaroom.v1.controllers.UserController;
@@ -14,13 +18,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
- * Software Architectures | DOPLab | UniL
  *
  * @author Team BookARoom
  */
-
 public class main {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -31,6 +34,7 @@ public class main {
     }
         private static void homePage() {
         String choice, username, password, firstName, lastName, email, ccexpirationdate, cccode, ccnumber;
+        //String ver;
         
         do {
             System.out.println("Enter:"
@@ -64,6 +68,7 @@ public class main {
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
                     System.out.println("PAYMENT INFORMATION");
+                    //CCnumber:
                     ccnumber = "";
                     String code1 = "";
                     boolean numCorrect = false;
@@ -79,6 +84,7 @@ public class main {
                                 numCorrect =true;
                                 ccnumber = code1;
                       }    
+                    //CCcode:
                     cccode = "";
                     String code2 = "";
                     boolean codeCorrect = false;
@@ -143,10 +149,11 @@ public class main {
         } while (!choice.equals("q"));
         }
     public static void userHomePage() {
-        String choice, subChoice, roomName = null, comment, dayArrival = null, dayDeparture = null, r, roomNameTemp = null;
+        String choice, subChoice, roomName = "", comment, dayArrival = null, dayDeparture = null, r, roomNameTemp = null;
         LocalDate dayArrivalD, dayDepartureD;
         long difDays = 0;
         double totalprice;
+        
 
         do {
             System.out.println("Enter:"
@@ -161,6 +168,7 @@ public class main {
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
+                    
                     System.out.println(RoomController.getRooms());
                     do {
                         System.out.println("Enter: "
@@ -232,66 +240,66 @@ public class main {
                                         System.out.println(dayDeparture+" is not a valid Date format.");
                                     }
                                 }
-                               /*
-                                try
-                                    {
-                                        LocalDate dayArrivalFormat = LocalDate.parse(dayArrival, UserController.getDateFormatter());
-                                        LocalDate dayDepartureFormat = LocalDate.parse(dayDeparture, UserController.getDateFormatter()); 
-                                        List<LocalDate> bookedDateTest = dayArrivalFormat.datesUntil(dayDepartureFormat).collect(Collectors.toList());
-                                        HashMap<String, List<LocalDate>> HmapTest;
-                                        HmapTest.
-                                        boolean valid = dmap.containsKey("Unknown Friend");
-
-                                        if (valid==true) {
-                                            System.out.println("The departure day will be "+dayDeparture+".");
-                                    } else {
-                                        System.out.println("The departure day " +dayDeparture+ 
-                                                " should later then the arrival day which is "+dayArrival+ ".");
-                                    }
-                                    }
-                                    catch (DateTimeParseException e)
-                                    {
-                                        System.out.println(dayDeparture+" is not a valid Date format.");
-                                    }
-                               */
+ 
                                 //set up dates other way
                                 dayArrivalD = LocalDate.parse(dayArrival, UserController.getDateFormatter());  
                                 dayDepartureD = LocalDate.parse(dayDeparture, UserController.getDateFormatter());
+                                //CHANGED TO ARRAYLIST FROM LIST
                                 List<LocalDate> bookedDate = dayArrivalD.datesUntil(dayDepartureD).collect(Collectors.toList());
                                 difDays = ChronoUnit.DAYS.between(dayArrivalD , dayDepartureD);
                                 //end
                                 
-                                // Dico with all the dates for a specific room
-                                RoomController.getBookRoomAndDates(roomName, bookedDate);
-                                
-                                HashMap<String, List<LocalDate>> Hmap;
-                                Hmap = RoomController.getBookRoomAndDates(roomName, bookedDate);
-                                
-                                // the list with only the dates that the room are booked
-                                HashMap<String, List<LocalDate>> Map2;
-                                Map2 = new HashMap<>(); // get the list of dates and make a putAll and then compare the 2 (LoginController.getUserLoggedIn().getBooking().toString())
-                                Map2.putAll(Hmap); // issu is that it doesn't give any expection message
-                                
-                                System.out.println("map1 == map2 : " + Hmap.equals(Map2)); // to compare the two, if they are not the same it returns false
-                                
-                                RoomController.setBookRoomAndDates(Hmap);
-                                System.out.println(RoomController.getBookRoomAndDates(roomName, bookedDate));
-                                
+                                boolean roomEmpty = true;
+                                try { 
+                                LocalDate test1 = null;
+                                for (LocalDate d : bookedDate) {
+                                    test1 = d;
+
+                                    ArrayList<LocalDate> test2;
+                                    for (HashMap.Entry<String, ArrayList<LocalDate>> a : RoomController.getBookedDates().entrySet()) {
+                                        if (a.getKey().equals(roomName)) {
+                                            test2 = a.getValue();
+
+                                            LocalDate test3 =null;
+                                            for (LocalDate v : test2){
+                                                if ((test1.toString().equals(v.toString())) == true) {
+                                                    roomEmpty = false;
+                                                    System.out.println("breaking");
+                                                    break;
+                                            }
+
+                                            }
+                                    }
+                                    }
+                                }
+                                }
+                                 catch (Exception e)
+                                    {
+                                        System.out.println(e);
+                                    }
+                                System.out.println(roomEmpty);
                                 //RoomController.getDatesBetween(dadateFormat,dddateFormat);
-                                RoomController.setRoomName(roomName);
-                                RoomController.setRoomDayArrival(dayArrival);
-                                RoomController.setRoomDayDeparture(dayDeparture);
-                                RoomController.setRoomDayDates(bookedDate);
-                                RoomController.addRoomToBooking();
-                                totalprice = RoomController.getRoomPriceTest();
-                                System.out.println(" You have booked "+ roomName +"."
-                                        +"\n The arrival day is "+ dayArrival +"."
-                                        +"\n The departure is " + dayDeparture +"."
-                                        +"\n Your stay will last "+difDays+" nights."
-                                        +"\n The total price of your stay will be "+ (difDays * totalprice) +".-"
-                                        + "test booked Dates: " +bookedDate);
-                                totalprice = 0;
+                                if (roomEmpty == true) {
+                                    RoomController.setRoomName(roomName);
+                                    //RoomController.setRoomDayArrival(dayArrival);
+                                    //RoomController.setRoomDayDeparture(dayDeparture);
+                                    //RoomController.setRoomDayDates(bookedDate);
+                                    RoomController.addRoomToBooking();
+                                    totalprice = RoomController.getRoomPriceTest();
+                                    System.out.println(" You have booked "+ roomName +"."
+                                            +"\n The arrival day is "+ dayArrival +"."
+                                            +"\n The departure is " + dayDeparture +"."
+                                            +"\n Your stay will last "+difDays+" nights."
+                                            +"\n The total price of your stay will be "+ (difDays * totalprice) +".-"
+                                            + "test booked Dates: " +bookedDate);
+                                    totalprice = 0;
+                                }
+                                    else {System.out.println("Dates already booked");
                                 
+                                }
+
+
+
                                 break;  
   
                             case "q":
@@ -313,6 +321,7 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
+                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
                     
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getArrDay());
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartDay());
