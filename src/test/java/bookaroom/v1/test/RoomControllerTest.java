@@ -137,7 +137,7 @@ public class RoomControllerTest {
         LoginController.setPassword("1234");
         LoginController.userLogsIn();
         // we need some mock data
-        MockDatabase.getInstance().addRoom(new Room("Room 1", 200, new ArrayList<String>() {
+        MockDatabase.getInstance().addRoom(new Room("Room 10", 200, new ArrayList<String>() {
             {
                 add("One double bed");
                 add("Maximum capacity: 1");
