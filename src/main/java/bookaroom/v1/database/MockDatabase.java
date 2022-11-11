@@ -1,3 +1,4 @@
+
 package bookaroom.v1.database;
 
 import bookaroom.v1.models.Room;
@@ -20,14 +21,14 @@ public class MockDatabase {
     private ArrayList<Comment> comments;
     
     private MockDatabase() {
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
         users.add(new User("jwang", "jingmin", "wang", "jingmin.wang@unil.ch", "1234","0000000000000000","123","10/26"));
         users.add(new User("gratt", "giacomo", "rattazzi", "giacomo.rattazzi@gmail.com", "1234", "0000000000000000","123","10/26"));
         users.add(new User("danes", "daniel", "do vale anes", "daniel.dovaleanes@gmail.com", "1234","0000000000000000","123","10/26"));
         users.add(new User("afarh", "ahmed", "farhat", "ahmed.farhat@gmail.com", "1234", "0000000000000000","123","10/26"));
 
     
-        rooms = new ArrayList<Room>();
+        rooms = new ArrayList<>();
         rooms.add(new Room("Room 1", 200, new ArrayList<String>() {
             {
                 add("One double bed");
@@ -138,14 +139,12 @@ public class MockDatabase {
             }
         }));
                
-        comments = new ArrayList<Comment>();
+        comments = new ArrayList<>();
         comments.add(new Comment("this is great"));
         comments.add(new Comment("this is terrible"));
-        
              
         }
     
-     
     public static MockDatabase getInstance() {
         if (instance == null) {
             instance = new MockDatabase();
@@ -163,7 +162,6 @@ public class MockDatabase {
     public void addAComment(Comment comment) {
         comments.add(comment);
     }
-
 
     public void removeAUser(User user) {
         users.remove(user);
@@ -184,12 +182,5 @@ public class MockDatabase {
     public ArrayList<Comment> getComments() {
         return comments;
     }
-
-    private static class foods {
-
-        public foods() {
-        }
-    }
-
 
 }

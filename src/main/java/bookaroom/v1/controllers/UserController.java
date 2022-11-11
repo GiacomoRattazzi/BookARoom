@@ -10,11 +10,7 @@ import bookaroom.v1.database.MockDatabase;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
-//To change to InvalidCreditCard: import bookaroom.v1.exceptions.InsufficientBalanceException;
-
-
-
-        
+    
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -32,17 +28,11 @@ public class UserController {
     private static String CCcode = "";
     private static String CCexpirationdate = "";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
-  //private static YearMonth ccexpirationdateFormat = YearMonth.parse(CCexpirationdate, formatter); // don't put final
     private static final YearMonth CurrentTime = YearMonth.now();
     private static final DateTimeFormatter Dateformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final LocalDate CurrentTimeLong = LocalDate.now();
    
-
-    
-    //TODO: set up booking class:
-    //private booking booking;
-    
-    // all of this doesn't work (emailExists, ccNumberCorrect, usernameExists, ExpiredCC)
+    // all of this doesn't work (emailExists, ccNumberCorrect, usernameExists, ExpiredCC) => test ?
     
     public static void createAUser() {
         try {
@@ -52,20 +42,7 @@ public class UserController {
         } catch (AlreadyExistsException | DoesNotExistException ex ) {
             System.out.println(ex.getMessage());
         }
-    }
-    /* BCDelete:
-    public static void depositMoney() {
-        LoginController.getUserLoggedIn().increaseBalance(amount);
-    */
-    
-    //To add:
-    public static void completeBooking() {
-        try {
-            LoginController.getUserLoggedIn().completeBooking();
-        } catch (InvalidCreditCardDateException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+    }   
     
     protected static User findByUsername(String username) throws DoesNotExistException {
         for (User user : MockDatabase.getInstance().getUsers()) {
@@ -115,10 +92,6 @@ public class UserController {
         }
         return false;
     }
-    //BCDelete:
-    //public static double getAmount() {
-    //    return amount;
-    //}
 
     public static String getEmail() {
         return email;
@@ -155,11 +128,7 @@ public class UserController {
     public static YearMonth getCurrentTime() {
         return CurrentTime;
     }
-    
-    
-            
-    
-    
+
     public static LocalDate getCurrentTimeLong() {
         return CurrentTimeLong;
     }
@@ -173,11 +142,6 @@ public class UserController {
         return Dateformatter;
     }
     
-    //BCDelete: 
-    //public static void setAmount(double amount) {
-    //    UserController.amount = amount;
-    //}
-
     public static void setEmail(String email) {
         UserController.email = email;
     }

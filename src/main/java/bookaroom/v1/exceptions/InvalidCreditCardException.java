@@ -1,9 +1,11 @@
 package bookaroom.v1.exceptions;
 
 /**
+ * Software Architectures | DOPLab | UniL
  *
- * @author danie
+ * @author Team BookARoom
  */
+
 public class InvalidCreditCardException extends Exception {
     private String message;
 

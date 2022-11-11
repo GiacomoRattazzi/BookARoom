@@ -5,6 +5,7 @@ package bookaroom.v1.exceptions;
  *
  * @author Team BookARoom
  */
+
 public class DoesNotExistException extends Exception {
 
     private String message;

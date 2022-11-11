@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bookaroom.v1.controllers;
-import static bookaroom.v1.controllers.RoomController.findRoomByNameInTheHotel;
+
 import java.util.ArrayList;
 import bookaroom.v1.database.MockDatabase;
-import bookaroom.v1.exceptions.DoesNotExistException;
 import bookaroom.v1.models.Comment;
-import bookaroom.v1.models.Room;
 import bookaroom.v1.models.User;
 import java.time.LocalDateTime;  
-import java.time.YearMonth;
-import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Software Architectures | DOPLab | UniL
  *
- * @author Giac
+ * @author Team BookARoom
  */
+
 public class CommentController {
  
     private static String comment = "";

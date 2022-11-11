@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.bookaroom.v1.views;
 
 import bookaroom.v1.controllers.UserController;
@@ -20,9 +16,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
 /**
+ * Software Architectures | DOPLab | UniL
  *
  * @author Team BookARoom
  */
+
 public class main {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -33,7 +31,6 @@ public class main {
     }
         private static void homePage() {
         String choice, username, password, firstName, lastName, email, ccexpirationdate, cccode, ccnumber;
-        //String ver;
         
         do {
             System.out.println("Enter:"
@@ -67,7 +64,6 @@ public class main {
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
                     System.out.println("PAYMENT INFORMATION");
-                    //CCnumber:
                     ccnumber = "";
                     String code1 = "";
                     boolean numCorrect = false;
@@ -83,7 +79,6 @@ public class main {
                                 numCorrect =true;
                                 ccnumber = code1;
                       }    
-                    //CCcode:
                     cccode = "";
                     String code2 = "";
                     boolean codeCorrect = false;
@@ -318,7 +313,6 @@ public class main {
                 case "3":
                     System.out.println("Here are the room(s) that you have booked.");
                     System.out.println(LoginController.getUserLoggedIn().getBooking().toString());
-                    //System.out.println(LoginController.getUserLoggedIn().getBooking().getDatesBooked());
                     
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getArrDay());
                     //System.out.println(LoginController.getUserLoggedIn().getBooking().getDepartDay());

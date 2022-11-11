@@ -1,3 +1,4 @@
+
 package bookaroom.v1.controllers;
 
 import static bookaroom.v1.controllers.UserController.findByUsername;
@@ -9,6 +10,7 @@ import bookaroom.v1.models.User;
  *
  * @author Team BookARoom
  */
+
 public class LoginController {
 
     private static String username = "";

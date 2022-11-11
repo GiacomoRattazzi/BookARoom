@@ -1,11 +1,5 @@
 package bookaroom.v1.models;
 
-//import ch.unil.doplab.grocerystorewebsite.v1.exceptions.InsufficientBalanceException;
-import bookaroom.v1.exceptions.InvalidCreditCardException;
-import bookaroom.v1.exceptions.InvalidCreditCardDateException;
-import java.time.YearMonth;
-import java.util.Arrays;
-
 /**
  * Software Architectures | DOPLab | UniL
  *
@@ -21,7 +15,6 @@ public class User {
     private int CCnumber;
     private int CCcode;
     private String CCexpirationdate;
-    //TODO: set up booking class:
     private Booking booking;
 
     public User(String username, String firstName, String lastName, String email, String password, String CCnumber, String CCcode, String CCexpirationdate) {
@@ -123,11 +116,4 @@ public class User {
                 + "\n" + this.booking.toString();
     }
 
-    public void completeBooking()throws InvalidCreditCardDateException {
-        throw new InvalidCreditCardDateException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getTotalPrice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
