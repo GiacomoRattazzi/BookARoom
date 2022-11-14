@@ -195,7 +195,7 @@ public class main {
                                                            
                                 boolean DADateValid = false;
                                 while(!DADateValid){
-                                    System.out.println("Enter the name date of arrival: (day,month,year = dd/mm/yyyy)");
+                                    System.out.println("Enter the date of arrival: (day,month,year = dd/mm/yyyy)");
                                     dayArrival = sc.nextLine();
 
                                     try
@@ -219,7 +219,7 @@ public class main {
                                 
                                 boolean DDDateValid = false;
                                 while(!DDDateValid){
-                                    System.out.println("Enter the name date of departure: (day,month,year = dd/mm/yyyy)");
+                                    System.out.println("Enter the date of departure: (day,month,year = dd/mm/yyyy)");
                                     dayDeparture = sc.nextLine();
 
                                     try
