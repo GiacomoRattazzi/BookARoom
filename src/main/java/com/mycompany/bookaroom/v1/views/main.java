@@ -20,6 +20,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Team BookARoom
@@ -169,7 +170,7 @@ public class main {
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
-                    
+                    System.out.println(MockDatabase.getInstance().getTest());
                     System.out.println(RoomController.getRooms());
                     do {
                         System.out.println("Enter: "
@@ -303,7 +304,7 @@ public class main {
                                             +"\n booked Dates: " +bookedDate);
                                     totalprice = 0;
                                 }
-                                    else {System.out.println("Date already booked: ");
+                                    else {System.out.println("Date already booked: " + temp2);
                                 
                                 }
 
