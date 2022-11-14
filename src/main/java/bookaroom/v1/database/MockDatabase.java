@@ -165,8 +165,8 @@ public class MockDatabase {
         }));
                
         comments = new ArrayList<Comment>();
-        comments.add(new Comment("Paul: this is great (2022-10-08)"));
-        comments.add(new Comment("Marine: this is terrible (2022-12-08)"));
+        comments.add(new Comment("Paul: This is great. (08/10/2022)"));
+        comments.add(new Comment("Marine: This is terrible. (24/10/2022)"));
         
              
         }
