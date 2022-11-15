@@ -69,6 +69,13 @@ public class main {
                     System.out.println("Enter a password:");
                     password = sc.nextLine();
                     System.out.println("PAYMENT INFORMATION");
+                    
+                    UserController.setUsername(username);
+                    UserController.setFirstName(firstName);
+                    UserController.setLastName(lastName);
+                    UserController.setEmail(email);
+                    UserController.setPassword(password);
+                    
                     //CCnumber:
                     ccnumber = "";
                     String code1 = "";
@@ -84,7 +91,9 @@ public class main {
                             else if (code1.length()==16)
                                 numCorrect =true;
                                 ccnumber = code1;
-                      }    
+                    }
+                    UserController.setCCnumber(ccnumber);
+                    
                     //CCcode:
                     cccode = "";
                     String code2 = "";
@@ -100,7 +109,8 @@ public class main {
                         else if (code2.length()==3)
                             codeCorrect =true;
                             cccode = code2;
-                      }
+                    }
+                    UserController.setCCcode(cccode);
                     
                     // Maybe if it fails here the user needs to put a new credit card so restart from ccnumber
                     ccexpirationdate = "";
@@ -127,14 +137,8 @@ public class main {
                             System.out.println(ccexpirationdate+" is not a valid Date format.");
                         }
                     }
-                    UserController.setUsername(username);
-                    UserController.setFirstName(firstName);
-                    UserController.setLastName(lastName);
-                    UserController.setEmail(email);
-                    UserController.setPassword(password);
-                    UserController.setCCnumber(ccnumber);
-                    UserController.setCCcode(cccode);
                     UserController.setCCexpirationDate(ccexpirationdate);
+                    
                     UserController.createAUser();
                     break;
                 case "3":
